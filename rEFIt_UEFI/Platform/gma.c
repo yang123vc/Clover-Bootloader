@@ -388,16 +388,16 @@ static struct gma_gpu_t KnownGPUS[] = {
 //GT1
   { 0x1602, "Intel HD Graphics"              }, //
   { 0x1606, "Intel HD Graphics"              }, //
-  { 0x160A, "Intel HD Graphics"              }, // Broadwell-U Integrated
-  { 0x160B, "Intel HD Graphics"              }, // Broadwell-U Integrated
-  { 0x160D, "Intel HD Graphics"              }, // Broadwell-U Integrated
-  { 0x160E, "Intel HD Graphics"              }, // Broadwell-U Integrated
+  { 0x160A, "Intel HD Graphics"              }, //
+  { 0x160B, "Intel HD Graphics"              }, //
+  { 0x160D, "Intel HD Graphics"              }, //
+  { 0x160E, "Intel HD Graphics"              }, //
 //GT2
   { 0x1612, "Intel HD Graphics 5600"         }, // i7-5700HQ
   { 0x1616, "Intel HD Graphics 5500"         }, //
-  { 0x161A, "Intel HD Graphics"              }, // Broadwell-U Integrated
-  { 0x161B, "Intel HD Graphics"              }, // Broadwell-U Integrated
-  { 0x161D, "Intel HD Graphics"              }, // Broadwell-U Integrated
+  { 0x161A, "Intel HD Graphics"              }, //
+  { 0x161B, "Intel HD Graphics"              }, //
+  { 0x161D, "Intel HD Graphics"              }, //
   { 0x161E, "Intel HD Graphics 5300"         }, //
 //GT3
   { 0x1622, "Intel Iris Pro Graphics 6200"   }, //
@@ -405,13 +405,13 @@ static struct gma_gpu_t KnownGPUS[] = {
   { 0x162A, "Intel Iris Pro Graphics P6300"  }, //
   { 0x162B, "Intel Iris Graphics 6100"       }, // Intel NUC 5i7RYH, i7-5557U
   { 0x162D, "Intel Iris Pro Graphics P6300"  }, //
-  { 0x162E, "Intel HD Graphics"              }, // Broadwell-U Integrated Graphics
-  { 0x1632, "Intel HD Graphics"              }, // Broadwell-U Integrated Graphics
-  { 0x1636, "Intel HD Graphics"              }, // Broadwell-U Integrated Graphics
-  { 0x163A, "Intel HD Graphics"              }, // Broadwell-U Integrated Graphics
-  { 0x163B, "Intel HD Graphics"              }, // Broadwell-U Integrated Graphics
-  { 0x163D, "Intel HD Graphics"              }, // Broadwell-U Integrated Graphics
-  { 0x163E, "Intel HD Graphics"              }, // Broadwell-U Integrated Graphics
+  { 0x162E, "Intel HD Graphics"              }, //
+  { 0x1632, "Intel HD Graphics"              }, //
+  { 0x1636, "Intel HD Graphics"              }, //
+  { 0x163A, "Intel HD Graphics"              }, //
+  { 0x163B, "Intel HD Graphics"              }, //
+  { 0x163D, "Intel HD Graphics"              }, //
+  { 0x163E, "Intel HD Graphics"              }, //
 
 
 //----------------Skylake--------------------
@@ -934,28 +934,28 @@ BOOLEAN setup_gma_devprop(pci_dt_t *gma_dev)
           //----------------Broadwell------------------
       case 0x1602: // "Intel HD Graphics"               //
       case 0x1606: // "Intel HD Graphics"               //
-      case 0x160A: // "Intel HD Graphics"               // Broadwell-U Integrated
-      case 0x160B: // "Intel HD Graphics"               // Broadwell-U Integrated
-      case 0x160D: // "Intel HD Graphics"               // Broadwell-U Integrated
-      case 0x160E: // "Intel HD Graphics"               // Broadwell-U Integrated
+      case 0x160A: // "Intel HD Graphics"               //
+      case 0x160B: // "Intel HD Graphics"               //
+      case 0x160D: // "Intel HD Graphics"               //
+      case 0x160E: // "Intel HD Graphics"               //
       case 0x1612: // "Intel HD Graphics 5600"          // i7-5700HQ
       case 0x1616: // "Intel HD Graphics 5500"          //
-      case 0x161A: // "Intel HD Graphics"               // Broadwell-U Integrated
-      case 0x161B: // "Intel HD Graphics"               // Broadwell-U Integrated
-      case 0x161D: // "Intel HD Graphics"               // Broadwell-U Integrated
+      case 0x161A: // "Intel HD Graphics"               //
+      case 0x161B: // "Intel HD Graphics"               //
+      case 0x161D: // "Intel HD Graphics"               //
       case 0x161E: // "Intel HD Graphics 5300"          //
       case 0x1622: // "Intel Iris Pro Graphics 6200"    //
       case 0x1626: // "Intel HD Graphics 6000"          //
       case 0x162A: // "Intel Iris Pro Graphics P6300"   //
       case 0x162B: // "Intel Iris Graphics 6100"        // Intel NUC 5i7RYH, i7-5557U
       case 0x162D: // "Intel Iris Pro Graphics P6300"   //
-      case 0x162E: // "Intel HD Graphics"               // Broadwell-U Integrated Graphics
-      case 0x1632: // "Intel HD Graphics"               // Broadwell-U Integrated Graphics
-      case 0x1636: // "Intel HD Graphics"               // Broadwell-U Integrated Graphics
-      case 0x163A: // "Intel HD Graphics"               // Broadwell-U Integrated Graphics
-      case 0x163B: // "Intel HD Graphics"               // Broadwell-U Integrated Graphics
-      case 0x163D: // "Intel HD Graphics"               // Broadwell-U Integrated Graphics
-      case 0x163E: // "Intel HD Graphics"               // Broadwell-U Integrated Graphics
+      case 0x162E: // "Intel HD Graphics"               //
+      case 0x1632: // "Intel HD Graphics"               //
+      case 0x1636: // "Intel HD Graphics"               //
+      case 0x163A: // "Intel HD Graphics"               //
+      case 0x163B: // "Intel HD Graphics"               //
+      case 0x163D: // "Intel HD Graphics"               //
+      case 0x163E: // "Intel HD Graphics"               //
           if (!SetSnb) {
               DBG("  Not set ig-platform-id. Automatically detect it or use ACPI injection\n");
               switch (gma_dev->device_id) {
