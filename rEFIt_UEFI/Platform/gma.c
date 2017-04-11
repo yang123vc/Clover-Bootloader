@@ -685,7 +685,7 @@ BOOLEAN setup_gma_devprop(pci_dt_t *gma_dev)
           //----------------Sandybridge----------------
       case 0x0102: // "Intel HD Graphics 2000"          //
           devprop_add_value(device, "built-in", &BuiltIn, 1);
-          devprop_add_value(device, "hda-gfx", (UINT8*)"onboard-1", 10);
+          //devprop_add_value(device, "hda-gfx", (UINT8*)"onboard-1", 10);
           devprop_add_value(device, "AAPL00,PixelFormat", sandy_bridge_hd_vals[0], 4);
           devprop_add_value(device, "AAPL00,T1", sandy_bridge_hd_vals[1], 4);
           devprop_add_value(device, "AAPL00,T2", sandy_bridge_hd_vals[2], 4);
@@ -696,7 +696,7 @@ BOOLEAN setup_gma_devprop(pci_dt_t *gma_dev)
           devprop_add_value(device, "AAPL00,T7", sandy_bridge_hd_vals[7], 4);
           devprop_add_value(device, "AAPL00,LinkType", sandy_bridge_hd_vals[8], 4);
           devprop_add_value(device, "AAPL00,LinkFormat", sandy_bridge_hd_vals[9], 4);
-          devprop_add_value(device, "AAPL00,DualLink", sandy_bridge_hd_vals[10], 4);
+          //devprop_add_value(device, "AAPL00,DualLink", sandy_bridge_hd_vals[10], 4);
           devprop_add_value(device, "AAPL00,Dither", sandy_bridge_hd_vals[11], 4);
           devprop_add_value(device, "AAPL00,DataJustify", sandy_bridge_hd_vals[12], 4);
           devprop_add_value(device, "graphic-options", sandy_bridge_hd_vals[13], 4);
@@ -736,7 +736,7 @@ BOOLEAN setup_gma_devprop(pci_dt_t *gma_dev)
               case 0x0116:
               case 0x0126:
                   devprop_add_value(device, "built-in", &BuiltIn, 1);
-                  devprop_add_value(device, "hda-gfx", (UINT8*)"onboard-1", 10);
+                  //devprop_add_value(device, "hda-gfx", (UINT8*)"onboard-1", 10);
                   devprop_add_value(device, "AAPL00,PixelFormat", sandy_bridge_hd_vals[0], 4);
                   devprop_add_value(device, "AAPL00,T1", sandy_bridge_hd_vals[1], 4);
                   devprop_add_value(device, "AAPL00,T2", sandy_bridge_hd_vals[2], 4);
@@ -747,7 +747,7 @@ BOOLEAN setup_gma_devprop(pci_dt_t *gma_dev)
                   devprop_add_value(device, "AAPL00,T7", sandy_bridge_hd_vals[7], 4);
                   devprop_add_value(device, "AAPL00,LinkType", sandy_bridge_hd_vals[8], 4);
                   devprop_add_value(device, "AAPL00,LinkFormat", sandy_bridge_hd_vals[9], 4);
-                  devprop_add_value(device, "AAPL00,DualLink", sandy_bridge_hd_vals[10], 4);
+                  //devprop_add_value(device, "AAPL00,DualLink", sandy_bridge_hd_vals[10], 4);
                   devprop_add_value(device, "AAPL00,Dither", sandy_bridge_hd_vals[11], 4);
                   devprop_add_value(device, "AAPL00,DataJustify", sandy_bridge_hd_vals[12], 4);
                   devprop_add_value(device, "graphic-options", sandy_bridge_hd_vals[13], 4);
@@ -763,7 +763,7 @@ BOOLEAN setup_gma_devprop(pci_dt_t *gma_dev)
                       devprop_add_value(device, "device-id", (UINT8*)&device_id, sizeof(device_id));
                   }
                   devprop_add_value(device, "built-in", &BuiltIn, 1);
-                  devprop_add_value(device, "hda-gfx", (UINT8*)"onboard-1", 10);
+                  //devprop_add_value(device, "hda-gfx", (UINT8*)"onboard-1", 10);
                   devprop_add_value(device, "AAPL,tbl-info", HD3000_tbl_info, 18);
                   devprop_add_value(device, "AAPL,os-info", HD3000_os_info, 20);
                   break;
@@ -808,7 +808,7 @@ BOOLEAN setup_gma_devprop(pci_dt_t *gma_dev)
               */
           }
           devprop_add_value(device, "built-in", &BuiltIn, 1);
-          devprop_add_value(device, "hda-gfx", (UINT8*)"onboard-1", 10);
+          //devprop_add_value(device, "hda-gfx", (UINT8*)"onboard-1", 10);
           devprop_add_value(device, "AAPL00,PixelFormat", ivy_bridge_hd_vals[0], 4);
           devprop_add_value(device, "AAPL00,T1", ivy_bridge_hd_vals[1], 4);
           devprop_add_value(device, "AAPL00,T2", ivy_bridge_hd_vals[2], 4);
@@ -819,7 +819,7 @@ BOOLEAN setup_gma_devprop(pci_dt_t *gma_dev)
           devprop_add_value(device, "AAPL00,T7", ivy_bridge_hd_vals[7], 4);
           devprop_add_value(device, "AAPL00,LinkType", ivy_bridge_hd_vals[8], 4);
           devprop_add_value(device, "AAPL00,LinkFormat", ivy_bridge_hd_vals[9], 4);
-          devprop_add_value(device, "AAPL00,DualLink", ivy_bridge_hd_vals[10], 4);
+          //devprop_add_value(device, "AAPL00,DualLink", ivy_bridge_hd_vals[10], 4);
           devprop_add_value(device, "AAPL00,Dither", ivy_bridge_hd_vals[11], 4);
           devprop_add_value(device, "AAPL,gray-value", ivy_bridge_hd_vals[12], 4);
           devprop_add_value(device, "AAPL,gray-page", ivy_bridge_hd_vals[13], 4);
@@ -925,7 +925,7 @@ BOOLEAN setup_gma_devprop(pci_dt_t *gma_dev)
               }
           }
           devprop_add_value(device, "built-in", &BuiltIn, 1);
-          devprop_add_value(device, "hda-gfx", (UINT8*)"onboard-1", 10);
+          //devprop_add_value(device, "hda-gfx", (UINT8*)"onboard-1", 10);
           devprop_add_value(device, "AAPL,gray-value", haswell_hd_vals[0], 4);
           devprop_add_value(device, "graphic-options", haswell_hd_vals[1], 4);
           break;
@@ -987,7 +987,7 @@ BOOLEAN setup_gma_devprop(pci_dt_t *gma_dev)
                       break;
               }
           }
-          devprop_add_value(device, "hda-gfx", (UINT8*)"onboard-1", 10);
+          //devprop_add_value(device, "hda-gfx", (UINT8*)"onboard-1", 10);
           devprop_add_value(device, "AAPL,gray-value", broadwell_hd_vals[0], 4);
           devprop_add_value(device, "AAPL,gray-page", broadwell_hd_vals[1], 4);
           devprop_add_value(device, "graphic-options", broadwell_hd_vals[2], 4);
@@ -1070,11 +1070,11 @@ BOOLEAN setup_gma_devprop(pci_dt_t *gma_dev)
           switch (MacModel) {
               case iMac171:
               case MacPro61:
-                  devprop_add_value(device, "hda-gfx", (UINT8*)"onboard-1", 10);
+                  //devprop_add_value(device, "hda-gfx", (UINT8*)"onboard-1", 10);
                   devprop_add_value(device, "AAPL,GfxYTile", skylake_hd_vals[1], 4);
                   break;
               default:
-                  devprop_add_value(device, "hda-gfx", (UINT8*)"onboard-1", 10);
+                  //devprop_add_value(device, "hda-gfx", (UINT8*)"onboard-1", 10);
                   devprop_add_value(device, "AAPL,Gfx324", skylake_hd_vals[0], 4);
                   devprop_add_value(device, "AAPL,GfxYTile", skylake_hd_vals[1], 4);
                   devprop_add_value(device, "AAPL00,PanelCycleDelay", skylake_hd_vals[2], 4);
@@ -1155,11 +1155,11 @@ BOOLEAN setup_gma_devprop(pci_dt_t *gma_dev)
           switch (MacModel) {
               case iMac171:
               case MacPro61:
-                  devprop_add_value(device, "hda-gfx", (UINT8*)"onboard-1", 10);
+                  //devprop_add_value(device, "hda-gfx", (UINT8*)"onboard-1", 10);
                   devprop_add_value(device, "AAPL,GfxYTile", skylake_hd_vals[1], 4);
                   break;
               default:
-                  devprop_add_value(device, "hda-gfx", (UINT8*)"onboard-1", 10);
+                  //devprop_add_value(device, "hda-gfx", (UINT8*)"onboard-1", 10);
                   devprop_add_value(device, "AAPL,Gfx324", skylake_hd_vals[0], 4);
                   devprop_add_value(device, "AAPL,GfxYTile", skylake_hd_vals[1], 4);
                   devprop_add_value(device, "AAPL00,PanelCycleDelay", skylake_hd_vals[2], 4);
