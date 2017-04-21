@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+<pkg-info format-version="2" identifier="org.clover.rc.scripts.core" version="v2.4k" install-location="/" auth="root">
+	<payload installKBytes="48" numberOfFiles="16"/>
+	<scripts>
+		<postinstall file="./postinstall"/>
+	</scripts>
+</pkg-info>

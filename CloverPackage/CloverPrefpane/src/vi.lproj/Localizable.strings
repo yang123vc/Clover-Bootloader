@@ -1,0 +1,10 @@
+"Always" = "Luôn";
+"Auto" = "Tự động";
+"Boot Volume" = "Phân vùng khởi động";
+"ESP on [%@] %@" = "ESP ở [%1$@] %2$@";
+"Never" = "Không bao giờ.";
+"No" = "Không";
+"No description available" = "Không có mô tả.";
+"Select the EFI directory" = "Lựa chọn thư mục EFI";
+"Set EFI directory" = "Thiết lập thư mục EFI";
+"Unknown" = "Không xác định.";

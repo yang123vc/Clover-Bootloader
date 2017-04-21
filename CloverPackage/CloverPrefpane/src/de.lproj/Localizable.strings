@@ -1,0 +1,10 @@
+"Always" = "Immer";
+"Auto" = "Automatisch";
+"Boot Volume" = "Start Partition";
+"ESP on [%@] %@" = "ESP auf [%1$@] %2$@";
+"Never" = "Niemals";
+"No" = "Nein";
+"No description available" = "Keine Beschreibung vorhanden";
+"Select the EFI directory" = "Wähle das EFI Verzeichnis";
+"Set EFI directory" = "Setze das EFI Verzeichnis";
+"Unknown" = "Unbekannt";

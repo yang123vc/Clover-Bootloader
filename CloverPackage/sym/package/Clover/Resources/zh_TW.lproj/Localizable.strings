@@ -1,0 +1,177 @@
+// ============================================================================
+// Installation
+// ----------------------------------------------------------------------------
+"UEFI.only_title" = "僅安裝 UEFI 開機版本";
+"UEFI.only_description" = "僅安裝 UEFI 主機板專用的 Clover 版本";
+
+// ============================================================================
+// Target
+// ----------------------------------------------------------------------------
+"Target.ESP_title" = "安裝 Clover 到 EFI 系統區";
+"Target.ESP_description" = "安裝 Clover 到目標磁區的 EFI 系統區
+
+需要在 Mac 下，先將 EFI 系統區 格式化為 Fat32 格式。
+
+參考 Fat32 手動格式化指令:
+diskutil list
+newfs_msdos -v EFI -F 32 /dev/rdisk9s1";
+
+// ============================================================================
+// Bootloader
+// ----------------------------------------------------------------------------
+
+"Bootloader_title" = "Bootloader";
+"Bootloader_description" = "簡而言之，Clover EFI 幸運草 需要三個必要的檔案。
+boot0 (在硬碟的 MBR) 負責載入 boot1。
+boot1 (在分割區的開機磁區 boot-sector) 搜尋 boot2。
+boot2 (在分割區的根目錄) 載入 /EFI/CLOVER/CLOVERIA32.efi 或 CLOVERX64.efi 及系統核心等等。";
+
+"boot0af_title" = "BIOS 安裝 boot0af (HFS+Fat32)";
+"boot0af_description" = "BIOS 主機板 之 BIOS 啓動 專用。
+使用 fdisk440 將 boot0af 寫入 MBR 的前 440 位元，避免損壞已經存在的 Windows 機碼，boot0af 優先引導 MBR 的 啓動分割區，如果沒有啓動分割區，將引導第一個 EFI/FAT32/HFS 的 boot1 分區(優先引導MBR，其次引導GPT)。
+本安裝將 會 設定 HFS 及 Fat32 安裝分割區為啟動分割區。
+如須安裝在 Fat32 格式，必須在 Win 先將分割區格式化為 Fat32 格式分割區，或在 Mac 操作如下
+ 1. 先用 磁碟工具 清除 為 MS-DOS (FAT) 格式
+ 2. diskutil list
+ 3. diskutil unmount /dev/rdisk9s1
+ 4. newfs_msdos -v Fat32 -F 32 /dev/rdisk9s1
+ 5. diskutil mount /dev/rdisk9s1";
+
+"boot0ss_title" = "BIOS 安裝 boot0ss (HFS+Fat32)";
+"boot0ss_description" = "BIOS 主機板 之 BIOS 啓動 專用。
+使用 fdisk440 將 boot0ss 寫入 MBR 的前 440 位元，避免損壞已經存在的 Windows 機碼，boot0ss 優先引導第一個 EFI/FAT32/HFS 的方割區的 boot1 分區(優先引導MBR，其次引導GPT)，如果沒有找到 boot1 分割區，將引導 MBR 的 啓動分割區。
+本安裝將 不會 設定 任何分區為啟動分區。
+如須安裝在 Fat32 格式，必須在 Win 先將分割區格式化為 Fat32 格式分割區，或在 Mac 操作如下
+1. 先用 磁碟工具 清除 為 MS-DOS (FAT) 格式
+2. diskutil list
+3. diskutil unmount /dev/rdisk9s1
+4. newfs_msdos -v Fat32 -F 32 /dev/rdisk9s1
+5. diskutil mount /dev/rdisk9s1";
+
+"bootNo_title" = "不更新 MBR 及 PBR 磁區";
+"bootNo_description" = "不安裝任何引導檔案 (boot0X, boot1X)。
+適用於不需要任何引導檔案的 UEFI 主機板。
+適用於不需要更新 MBR(boot0X) 及 PBR(boot1X) 的4kb格式硬碟。";
+
+"AltBoot_title" = "安裝 PBR 的多重開機選項";
+"AltBoot_description" = "安裝 PBR 的多重開機選項，boot1=變色龍引導，boot6=64位 Clover 引導。
+可設定 開機 boot = boot{按鍵} 進行多重開機設定。";
+
+
+"boot32_title" = "安裝 boot 32位 優先啟動";
+"boot32_description" = "安裝 32位+64位 boot 文件，並優先啟用 32位系統。
+預設啟動 boot = Clover boot 32位，可在 test done 的 2 秒內，
+按 1 選 boot1 = 變色龍 boot，
+按 3 選 boot3 = Clover boot 32位，
+按 6 選 boot6 = Clover boot 64位。";
+
+"boot64_title" = "安裝 boot 64位 優先啟動";
+"boot64_description" = "安裝 32位+64位 boot 文件，並優先啟用 64位系統。
+預設啟動 boot = Clover boot 64位，可在 test done 的 2 秒內，
+按 1 選 boot1 = 變色龍 boot，
+按 3 選 boot3 = Clover boot 32位，
+按 6 選 boot6 = Clover boot 64位。";
+
+// ============================================================================
+// CloverEFI
+// ----------------------------------------------------------------------------
+"CloverEFI_title" = "CloverEFI";
+"CloverEFI_description" = "選擇要安裝的 CloverEFI 版本。";
+"cloverEFI.32_title" = "CloverEFI 32位版本";
+"cloverEFI.32_description" = "CloverEFI 32位版本";
+"cloverEFI.64.sata_title" = "CloverEFI 64位 SATA";
+"cloverEFI.64.sata_description" = "CloverEFI 64位版本，使用 SATA 模式存取硬碟。";
+"cloverEFI.64.blockio_title" = "CloverEFI 64位 BiosBlockIO";
+"cloverEFI.64.blockio_description" = "CloverEFI 64位版本，使用 Bios Block I/O 模式存取硬碟。";
+"cloverEFI.64.blockio2_title" = "CloverEFI 64-bits BiosBlockIO for NVIDIA NForce MCP79";
+"cloverEFI.64.blockio2_description" = "CloverEFI 64-bits using Bios Block I/O to access drives for chipset NVIDIA NForce MCP79";
+
+// ============================================================================
+// Drivers
+// ----------------------------------------------------------------------------
+"Ps2KeyboardDxe-32_description" = "32位，PS/2 鍵盤 驅動。";
+"Ps2MouseAbsolutePointerDxe-32_description" = "32位，PS/2 觸控板 驅動。";
+"Ps2MouseDxe-32_description" = "32位，PS/2 滑鼠 驅動。";
+"Ps2MouseDxe-64_description" = "64位，PS/2 滑鼠 驅動。";
+"UsbMouseDxe-32_description" = "32位，USB 滑鼠 驅動。";
+"UsbMouseDxe-64_description" = "64位，USB 滑鼠 驅動。";
+"VBoxExt2-32_description" = "32位，來自 Virtualbox 的 ext2/3 檔案系統驅動。";
+"VBoxExt2-64_description" = "64位，來自 Virtualbox 的 ext2/3 檔案系統驅動。";
+"VBoxExt4-32_description" = "32位，來自 Virtualbox 的 ext4 檔案系統驅動。";
+"VBoxExt4-64_description" = "64位，來自 Virtualbox 的 ext4 檔案系統驅動。";
+"XhciDxe-32_description" = "32位，XHCI USB 3.0 驅動。";
+"XhciDxe-64_description" = "64位，XHCI USB 3.0 驅動。";
+"CsmVideoDxe-64_description" = "64位，Clover GUI 圖形使用者介面的顯示驅動，允許選擇更多解析度。
+基於 UEFI BIOS 的 CSM module 模組，CSM 必須 Enabled 啓動。
+Clover 可能無法啓動，可能會發生 系統喚醒 的問題。使用時，請注意相關問題。";
+"DataHubDxe-64_description" = "64位，此 DataHub 協定支持 Mac OS X 強制啓用。
+通常已啓用，但有時可能遺漏，可在螢幕 warning 中查看。";
+"EmuVariableUefi-64_description" = "64位，支持 Mac OS X 需要的 NVRAM 變數。
+大多數的 UEFI boot 使用硬體 NVRAM，但是部份少見案例需要 EmuVariableUefi。
+建議只在 有問題時，才啓用 EmuVariableUefi。";
+"OsxAptioFixDrv-64_description" = "64位，提供 UEFI 韌體的 記憶體問題修正，如 AMI Aptio 等。";
+"OsxLowMemFixDrv-64_description" = "64位，提供 UEFI 韌體的 記憶體問題修正，如 AMI Aptio 等。
+為 OsxAptioFixDrv 的簡化版本，請勿與 OsxAptioFixDrv 同時使用。";
+"PartitionDxe-64_description" = "64位，支持非常態的分割區配置，如 hybrid GPT/MBR 或 Apple Partition Map。";
+"SMCHelper-64_description" = "Restore SMC keys left in nvram by FakeSMC";
+"AppleEvent-64_description" = "Create AppleEvent protocol for FileVault2";
+"AppleKeyAggregator-64_description" = "Support for boot UI dialog for FileVault2";
+"FirmwareVolume-64_description" = "Create FirmwareVolume with cursor images";
+"AppleImageCodec-64_description" = "For decode PNG and BMP images in boot UI";
+"AppleUITheme-64_description" = "Create boot UI Themes support";
+"HashServiceFix-64_description" = "Fix Hash support if absent in native UEFI BIOS";
+"UsbKbDxe-64_description" = "Keyboard driver for boot UI support";
+"AppleGraphicsConfig-64_description" = "Create optional AppleGraphicsConfig protocol";
+"OSInfo-64_description" = "Inform user about version of macOS (optional)";
+       
+
+// ============================================================================
+// Themes
+// ----------------------------------------------------------------------------
+
+"Themes_title" = "開機主題";
+"Themes_description" = "選擇安裝，開機時，顯示的背景主題。";
+
+"BGM_title" = "BlackGreenMoody";
+"BGM_description" = "選擇安裝來自 Blackosx 的 BlackGreenMoody 主題。
+安裝位置 /EFI/CLOVER/themes/BGM。";
+
+"embedded_title" = "embedded";
+"embedded_description" = "embedded theme from Blackosx,
+Install to /EFI/CLOVER/themes/embedded";
+
+"metal_title" = "Metal";
+"metal_description" = "選擇安裝來自 Slice 的原始 Metal 主題。
+安裝位置 /EFI/CLOVER/themes/metal。";
+
+"random_title" = "random";
+"random_description" = "random theme from Slice,
+Install to /EFI/CLOVER/themes/random choose a theme from others";
+
+"steampunkblack_title" = "steampunkblack";
+"steampunkblack_description" = "steampunkblack theme from medik,
+Install to /EFI/CLOVER/themes/steampunkblack";
+
+"CloverThemeManager_title" = "CloverThemeManager.app";
+"CloverThemeManager_description" = "CloverThemeManager.app by blackosx,
+keeps your Themes up to date, remove or install them by choosing from a wide selection.
+Install to /Applications";
+// ============================================================================
+// RC Scripts
+// ----------------------------------------------------------------------------
+"rc.scripts.on.target_title" = "安裝 RC scripts 到目標磁區";
+"rc.scripts.on.target_description" = "安裝全部 RC scripts 到目標磁區。
+目標磁區必須是 可開機的 OSX 磁區。";
+"rc.scripts.on.all.volumes_title" = "安裝全部 RC scripts 到全部可開機的 OSX 磁區";
+"rc.scripts.on.all.volumes_description" = "安裝全部 RC scripts 到全部內置可開機的 OSX 磁區。";
+"Optional RC Scripts" = "選擇安裝 RC Scripts";
+"disable_sleep_proxy_client_description" = "停用 mDNSResponder 休眠 proxy client 服務，可以避免系統休眠時，每小時自動喚醒。";
+
+// ============================================================================
+// Clover Preference Pane
+// ----------------------------------------------------------------------------
+"CloverPrefpane_title" = "安裝 Clover 系統偏好設定 面板";
+"CloverPrefpane_description" = "安裝 Clover 系統偏好設定 面板 到選擇磁區。
+包含 可提醒 Clover 更新訊息的 Clover 更新軟體。";
+
+// ----------------------------------------------------------------------------

@@ -1,0 +1,53 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <meta http-equiv="Content-Style-Type" content="text/css"/>
+  <title></title>
+  <style type="text/css">
+    p.p1 {margin: 0.0px 0.0px 0.0px 0.0px; font: 10.0px Times}
+    p.p2 {margin: 0.0px 0.0px 0.0px 0.0px; font: 10.0px Times; color: #0000ee}
+    p.p3 {margin: 0.0px 0.0px 0.0px 0.0px; font: 10.0px Times; min-height: 13.0px}
+    span.s1 {font: 10.0px 'Lucida Grande'}
+    span.s2 {color: #000000}
+    span.s3 {text-decoration: underline}
+  </style>
+</head>
+<body>
+<p class="p1"><span class="s1">Clover v2 </span>ir ielādētājs ar vāļējo izejas kodu, kura pamatā ir sekojošu projektu
+tehnoloģijas: Chameleon, rEFIt, XNU, VirtualBox.</p>
+<p class="p2"><span class="s2">Tā pamatā ir aktuālas EDK2 revīzijas <a href="http://sourceforge.net/projects/cloverefiboot/"><span class="s3">http://sourceforge.net/projects/cloverefiboot/</span></a></span></p>
+<p class="p3"><br/></p>
+<p class="p1"><b>Pamata īpašības:</b></p>
+<p class="p1">- boot into 10.4 - 10.12 macOS, Windows EFI and Linux EFI</p>
+<p class="p1">- Clover EFI sistēmai nodrošina RuntimeServices, kas nav iespējāms ar
+BIOS-bāzētiem ielādētājiem.</p>
+<p class="p1">- būtībā, Clover automātiski nosaka sistēmas aprīkojumu un attiecīgi
+pieskaņo ielādētāja konfigurāciju,<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">  </span> bet, protams, lietotājs var arī brīvi mainīt šo konfigurāciju, rediģējot
+config.plist</p>
+<p class="p1">- jūs varat izmantot Startup Disk paneli no sistēmas iestātījumiem, lai
+uzreiz restartētu datoru citā operetājsistēmā</p>
+<p class="p1">- jūs varat noradīt savu unikālo UUID iekš config.plist, un būt drošam, ka
+tieši to ieraudzīs sistēma</p>
+<p class="p1">- tiek veikta SMBIOS tabulu korekcijas, lai tas atbilstu standartām 2.6</p>
+<p class="p1">- tiek vaikta ACPI tabulo korekcija, lai tas atbilstu stanadrtām 4.0.</p>
+<p class="p1"><span class="Apple-converted-space">  </span>Modificēta DSDT tabula tiks ielādēta no ielādējamas sistēmas saknes
+direktorijas, jeb no apakškataloga EFI</p>
+<p class="p1">- DSDT patching on the fly by fixes and by patterns</p>
+<p class="p1">- pārrestartēšanas un aizmigšanas/pamošanas problēmu automātiskā korekcija</p>
+<p class="p1">- automātiskā grafisko karšu ieslēgšana priekš ATI, nVidia un Intel,<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">  </span>ar lokānas konfigurācijas iespējām.</p>
+<p class="p1">- problēmu, saistītu ar USB portu darbību, risināšana, t.s. priekš USB 3.0<span class="Apple-converted-space"> </span></p>
+<p class="p1">- skaņas un tīkla karšu īpašību injicēšana.</p>
+<p class="p1">- CPU Turbo un klasisko P-/C-stāvokļū ģenerēšana</p>
+<p class="p1">- ACPI tabulu ielāde(SSDT-xx, APIC, BOOT, SLIC, SLIT, SRAT, UEFI...)</p>
+<p class="p1">- extra kexts loading<span class="Apple-converted-space"> </span></p>
+<p class="p1">- kernel and kext patching on the fly</p>
+<p class="p1">- set NVRAM variables for different purpose</p>
+<p class="p1">- autoielāde pēc laika intervāla, konfigurējamas tēmas un ekrānšāvienu
+saglabāšana (ar F10),</p>
+<p class="p1">- atskaišu saglabāšana pirms (ar F2) un pēc sistēmas palaišanas, problēmu
+diagnostikas nolūkiem.</p>
+</body>
+</html>

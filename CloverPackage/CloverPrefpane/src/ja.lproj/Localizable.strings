@@ -1,0 +1,10 @@
+"Always" = "常に";
+"Auto" = "オート";
+"Boot Volume" = "ブートボリューム";
+"ESP on [%@] %@" = "[%1$@] のESP %2$@";
+"Never" = "しない";
+"No" = "マウントしない";
+"No description available" = "説明文なし";
+"Select the EFI directory" = "EFIディレクトリを選択";
+"Set EFI directory" = "EFIディレクトリを設定";
+"Unknown" = "不明";

@@ -1,0 +1,167 @@
+// ============================================================================
+// Installation
+// ----------------------------------------------------------------------------
+"UEFI.only_title" = "Installation pour carte mère UEFI seulement";
+"UEFI.only_description" = "Installation spécifique de Clover pour les cartes mères UEFI.";
+
+// ============================================================================
+// Target
+// ----------------------------------------------------------------------------
+"Target.ESP_title" = "Installe Clover dans l'ESP";
+"Target.ESP_description" = "Installe Clover dans l'ESP (EFI System Partition) du volume cible
+
+L'ESP doit d'abord être formaté depuis le Mac en Fat32.
+
+Pour le formatage en Fat32 utiliser des commandes du style:
+diskutil list
+newfs_msdos -v EFI -F 32 /dev/rdisk9s1";
+
+// ============================================================================
+// Bootloader
+// ----------------------------------------------------------------------------
+
+"Bootloader_title" = "Bootloader";
+"Bootloader_description" = "Clover EFI nécessite trois fichiers  essentiels. (en bref)
+boot0 (Sur disque MBR) responsable du chargement boot1.
+boot1 (Sur partition boot secteur) recherche boot2.
+boot2 (A la racine du répertoire de la partition) charge /EFI/CLOVER/CLOVERIA32.efi or CLOVERX64.efi, and kernel etc.";
+
+"boot0af_title" = "Installe boot0af dans le MBR";
+"boot0af_description" = "Nécessaire pour démarrer depuis le BIOS.
+boot0af (boot0 Active First) bootloader essaie de démarrer la partition active définie dans le MBR. S'il n'y a pas de partition active, il va essayé de démarrer la première partition EFI/FAT32/HFS (définie dans le MBR puis dans le GPT) ayant une signature PBR valide.
+Ce choix va activer la partition HFS/FAT32 sélectionnée.";
+
+"boot0ss_title" = "Installe boot0ss dans le MBR";
+"boot0ss_description" = "Nécessaire pour démarrer depuis le BIOS.
+boot0ss (boot0 Signature Scanning) bootloader va d'abord essayé de démarrer la première partition EFI/FAT32/HFS (définie dans le MBR puis dans le GPT) ayant une signature PBR valide. Si aucune partition n'a été trouvée, il va essayé de démarrer la partition active définie dans le MBR.
+Ce bootloader est un bon choix quand vous avez Windows d'installé sur le même disque car Windows nécessite que sa partition soit active.
+Ce choix ne va activer aucune partition dans le MBR.";
+
+"bootNo_title" = "Ne pas mettre à jour les secteurs de boot";
+"bootNo_description" = "N'installe aucun secteur de démarrage (boot0X, boot1X).
+Utile pour les cartes mères UEFI qui n'ont pas besoin de bootloader.
+Cette option peut aussi être utilisée pour éviter la mise à jour des secteurs de boot (MBR et PBR).";
+
+"AltBoot_title" = "Installation d'un sélecteur de boot";
+"AltBoot_description" = "Installe un sélecteur de boot dans le PBR.
+Permet de sélectionner le fichier à booter par l'appui d'une touche.
+Fichier à booter = boot{touche}";
+
+
+"boot32_title" = "Installer & démarrer en mode 32bits boot en premier";
+"boot32_description" = "Installer les fichiers boot et configurer le mode 32bits en premier.
+Default boot mode = Clover EFI 32bits. You can..
+Presser la touche 1 pour boot1 = Chameleon boot,
+Presser la touche 3 pour boot3 = Clover EFI 32bits boot,
+Presser la touche 6 pour boot6 = Clover EFI 64bits boot.";
+
+"boot64_title" = "Installer & Démarrer en mode 64bits";
+"boot64_description" = "Installer les fichiers boot et configurer le mode 64bits en premier.
+Default boot to boot = Clover EFI 64bits. You can..
+Presser la touche 1 pour boot1 = Chameleon boot,
+Presser la touche 3 pour boot3 = Clover EFI 32bits boot,
+Presser la touche 6 pour boot6 = Clover EFI 64bits boot.";
+
+// ============================================================================
+// CloverEFI
+// ----------------------------------------------------------------------------
+"CloverEFI_title" = "CloverEFI";
+"CloverEFI_description" = "Sélectionner la version de CloverEFI à installer.";
+"cloverEFI.32_title" = "CloverEFI 32-bits";
+"cloverEFI.32_description" = "CloverEFI 32-bits";
+"cloverEFI.64.sata_title" = "CloverEFI 64-bits SATA";
+"cloverEFI.64.sata_description" = "CloverEFI 64-bits utilisant SATA pour l’accès au disques";
+"cloverEFI.64.blockio_title" = "CloverEFI 64-bits BiosBlockIO";
+"cloverEFI.64.blockio_description" = "CloverEFI 64-bits utilisant les Bios Block I/O pour l’accès au disques";
+"cloverEFI.64.blockio2_title" = "CloverEFI 64-bits BiosBlockIO for NVIDIA NForce MCP79";
+"cloverEFI.64.blockio2_description" = "CloverEFI 64-bits using Bios Block I/O to access drives for chipset NVIDIA NForce MCP79";
+
+// ============================================================================
+// Drivers
+// ----------------------------------------------------------------------------
+"Ps2KeyboardDxe-32_description" = "Driver 32bits pour clavier PS/2";
+"Ps2MouseAbsolutePointerDxe-32_description" = "Driver 32bits pour trackpad PS/2";
+"Ps2MouseDxe-32_description" = "Driver 32bits pour souris PS/2";
+"Ps2MouseDxe-64_description" = "Driver 64bits pour souris PS/2";
+"UsbMouseDxe-32_description" = "Driver 32bits pour souris USB";
+"UsbMouseDxe-64_description" = "Driver 64bits pour souris USB";
+"VBoxExt2-32_description" = "Driver 32bits pour lire les partitions formatées en ext2/3";
+"VBoxExt2-64_description" = "Driver 64bits pour lire les partitions formatées en ext2/3";
+"VBoxExt4-32_description" = "Driver 32bits pour lire les partitions formatées en ext4";
+"VBoxExt4-64_description" = "Driver 64bits pour lire les partitions formatées en ext4";
+"XhciDxe-32_description" = "Driver 32bits gérant l'USB 3.0";
+"XhciDxe-64_description" = "Driver 64bits gérant l'USB 3.0";
+"CsmVideoDxe-64_description" = "Driver vidéo 64 bits pour l'interface graphique (GUI) de Clover permettant d'avoir un plus large éventail de résolutions.
+Ce driver est basé sur le module CSM des firmwares UEFI et nécessite que CSM soit activé.
+Clover peut ne pas démarrer avec ce driver et il peut aussi provoquer des problèmes de sortie de veille.
+À utiliser avec précaution.";
+"DataHubDxe-64_description" = "Ce driver ajoute le protocole DataHub qui est nécessaire pour MacOSX.
+Ce protocole est déjà présent dans la majorité des cas, mais il se peut qu'il manque sur certaines configurations. Dans ce cas vous devriez voir des avertissements à l’écran.";
+"EmuVariableUefi-64_description" = "Driver 64 bits pour le support des variables en NVRAM nécessaire à MacOSX.
+La plupart des firmwares UEFI utilisent une NVRAM matérielle, mais dans de rares cas ce driver est nécessaire.
+À n'utiliser que si vous avez des problèmes de NVRAM.";
+"OsxAptioFixDrv-64_description" = "Driver 64 bits pour corriger les problèmes de mémoire sur les firmwares UEFI tel que les AMI Aptio";
+"OsxLowMemFixDrv-64_description" = "Variante simplifiée du driver 64 bits OsxAptioFixDrv (les 2 drivers ne doivent pas être installés simultanément)";
+"PartitionDxe-64_description" = "Driver 64 bits permettant le support de tables de partition non communes telle que: hybrid GPT/MBR ou Apple Partition.";
+"SMCHelper-64_description" = "Restore SMC keys left in nvram by FakeSMC";
+"AppleEvent-64_description" = "Create AppleEvent protocol for FileVault2";
+"AppleKeyAggregator-64_description" = "Support for boot UI dialog for FileVault2";
+"FirmwareVolume-64_description" = "Create FirmwareVolume with cursor images";
+"AppleImageCodec-64_description" = "For decode PNG and BMP images in boot UI";
+"AppleUITheme-64_description" = "Create boot UI Themes support";
+"HashServiceFix-64_description" = "Fix Hash support if absent in native UEFI BIOS";
+"UsbKbDxe-64_description" = "Keyboard driver for boot UI support";
+"AppleGraphicsConfig-64_description" = "Create optional AppleGraphicsConfig protocol";
+"OSInfo-64_description" = "Inform user about version of macOS (optional)";
+       
+
+// ============================================================================
+// Themes
+// ----------------------------------------------------------------------------
+
+"Themes_title" = "Thèmes";
+"Themes_description" = "Sélectionner un thème pour l'installation.";
+
+"BGM_title" = "Black_Green_Moody";
+"BGM_description" = "BGM (thème Black Green and Moody) par Blackosx,
+Sera installé dans /EFI/CLOVER/themes/BGM";
+
+"embedded_title" = "Embedded";
+"embedded_description" = "Thème Embedded par Blackosx,
+Sera installé dans /EFI/CLOVER/themes/embedded";
+
+"metal_title" = "metal";
+"metal_description" = "Le thème original Metal par Slice,
+Sera installé dans /EFI/CLOVER/themes/metal";
+
+"random_title" = "Random";
+"random_description" = "Thème Random par Slice,
+Sera installé dans /EFI/CLOVER/themes/random choises une thème";
+
+"steampunkblack_title" = "Steampunkblack";
+"steampunkblack_description" = "Thème Steampunkblack par medik,
+Sera installé dans /EFI/CLOVER/themes/steampunkblack";
+
+"CloverThemeManager_title" = "CloverThemeManager.app";
+"CloverThemeManager_description" = "CloverThemeManager.app by blackosx,
+keeps your Themes up to date, remove or install them by choosing from a wide selection.
+Install to /Applications";
+// ============================================================================
+// RC Scripts
+// ----------------------------------------------------------------------------
+"rc.scripts.on.target_title" = "RC scripts sur le volume de destination";
+"rc.scripts.on.target_description" = "Installation de tous les RC scripts sur le volume de destination.
+Le volume de destination doit être un volume OSX bootable.";
+"rc.scripts.on.all.volumes_title" = "RC scripts sur tous les autres volumes OSX bootables";
+"rc.scripts.on.all.volumes_description" = "Installation de tous les RC scripts sur tous les volumes internes OSX bootables autre que le volume de destination.";
+"Optional RC Scripts" = "RC Scripts Optionnels";
+"disable_sleep_proxy_client_description" = "Script pour désactiver le service Bonjour 'sleep proxy client' afin d'éviter que le système ne se réveille toutes les heures";
+
+// ============================================================================
+// Clover Preference Pane
+// ----------------------------------------------------------------------------
+"CloverPrefpane_title" = "Installe le panneau de configuration de Clover";
+"CloverPrefpane_description" = "Installe le panneau de configuration de Clover sur le volume de destination.
+Inclus aussi CloverUpdater qui vous notifie des nouvelles mises à jour de Clover.";
+
+// ----------------------------------------------------------------------------

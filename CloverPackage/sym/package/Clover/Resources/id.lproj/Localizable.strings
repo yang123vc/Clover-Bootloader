@@ -1,0 +1,166 @@
+// ============================================================================
+// Installation
+// ----------------------------------------------------------------------------
+"UEFI.only_title" = "Instalasi untuk modus UEFI saja";
+"UEFI.only_description" = "Dipakai pada mobo UEFI motherboards saja.";
+
+// ============================================================================
+// Target
+// ----------------------------------------------------------------------------
+"Target.ESP_title" = "Instalasi Clover pada ESP";
+"Target.ESP_description" = "Install Clover pada ESP (EFI System Partition) dari target volume
+
+Harap format ESP dalam Fat32 memakai Mac.
+
+Format Fat32 memakai perintah:
+diskutil list
+newfs_msdos -v EFI -F 32 /dev/rdisk9s1";
+
+// ============================================================================
+// Bootloader
+// ----------------------------------------------------------------------------
+
+"Bootloader_title" = "Bootloader";
+"Bootloader_description" = "Clover EFI membutuhkan 3 file utama. (istilah yang sederhana)
+boot0 (pada sektor MBR) berfungsi untuk memuat boot1.
+boot1 (di bootsector partisi) berfungsi untuk mencari boot2.
+boot2 (di partisi direktori root) untuk memuat /EFI/CLOVER/CLOVERIA32.efi atau CLOVERX64.efi, kernel dan lainnya.";
+
+"boot0af_title" = "Install boot0af ke MBR";
+"boot0af_description" = "Dipakai untuk BIOS booting pada BIOS mobo.
+boot0af (boot0 Active First) bootloader mencoba untuk boot partisi aktif yang ada di MBR. Jika tidak ada partisi aktif, maka akan mencoba untuk boot partisi pertama EFI/FAT32/HFS (yang ada di MBR dan kemudian di GPT) dengan signature PBR yang valid.
+Pilihan ini akan membuat partisi HFS/Fat32 yang terpilih menjadi aktif.";
+
+"boot0ss_title" = "Install boot0ss ke MBR";
+"boot0ss_description" = "Dipakai untuk BIOS booting pada BIOS mobo.
+boot0ss (boot0 Signature Scanning) bootloader mencoba untuk boot partisi pertama EFI/FAT32/HFS (yang ada di MBR dan kemudian di GPT) dengan signature PBR yang valid. Jika partisi tidak ditemukan maka akan mencoba untuk boot partisi aktif yang ada di MBR.
+Bootloader ini adalah pilihan yang baik bila Windows diinstall pada disk yang sama karena Windows butuh partisinya dalam keadaan aktif.
+Pilihan ini tidak membuat partisi pada MBR menjadi aktif.";
+
+"bootNo_title" = "Jangan update MBR dan PBR";
+"bootNo_description" = "Jangan install bootloader (boot0X, boot1X).
+Berguna untuk mobo UEFI yang tidak membutuhkan bootloader.
+Bisa dipakai kalau anda tidak mau meng upgrade MBR atau PBR.";
+
+"AltBoot_title" = "Pakai alternatif boot PBR";
+"AltBoot_description" = "Install alternatif boot PBR dengan memilih boot melalui sebuah tombol.
+File to boot = boot{keypressed}";
+
+
+"boot32_title" = "Instal & Menjalankan mode 32bit terlebih dahulu";
+"boot32_description" = "Menginstal dan mengaktifkan boot mode 32bit.
+Boot utama = Clover EFI 32bit. Anda dapat..
+Tekan 1 untuk boot1 = Chameleon boot,
+Tekan 3 untuk boot3 = Clover EFI 32bit boot,
+Tekan 6 untuk boot6 = Clover EFI 64bit boot.";
+
+"boot64_title" = "Instal & Menjalankan mode 64bit terlebih dahulu";
+"boot64_description" = "Menginstal dan mengaktifkan boot mode 64bit.
+Boot utama = Clover EFI 64bit. Anda dapat..
+Tekan 1 untuk boot1 = Chameleon boot,
+Tekan 3 untuk boot3 = Clover EFI 32bit boot,
+Tekan 6 untuk boot6 = Clover EFI 64bit boot.";
+
+// ============================================================================
+// CloverEFI
+// ----------------------------------------------------------------------------
+"CloverEFI_title" = "CloverEFI";
+"CloverEFI_description" = "Pilih versi CloverEFI yang mau di install.";
+"cloverEFI.32_title" = "CloverEFI 32-bits";
+"cloverEFI.32_description" = "CloverEFI 32-bits";
+"cloverEFI.64.sata_title" = "CloverEFI 64-bits SATA";
+"cloverEFI.64.sata_description" = "CloverEFI 64-bits SATA untuk akses drive";
+"cloverEFI.64.blockio_title" = "CloverEFI 64-bits BiosBlockIO";
+"cloverEFI.64.blockio_description" = "CloverEFI 64-bits Bios Block I/O untuk akses drive";
+"cloverEFI.64.blockio2_title" = "CloverEFI 64-bits BiosBlockIO for NVIDIA NForce MCP79";
+"cloverEFI.64.blockio2_description" = "CloverEFI 64-bits using Bios Block I/O to access drives for chipset NVIDIA NForce MCP79";
+
+// ============================================================================
+// Drivers
+// ----------------------------------------------------------------------------
+"Ps2KeyboardDxe-32_description" = "Driver untuk keyboard PS/2, 32bit";
+"Ps2MouseAbsolutePointerDxe-32_description" = "Driver trackpad PS/2, 32bit";
+"Ps2MouseDxe-32_description" = "PS/2 mouse driver, 32bit";
+"Ps2MouseDxe-64_description" = "PS/2 mouse driver, 64bit";
+"UsbMouseDxe-32_description" = "USB mouse driver, 32bit";
+"UsbMouseDxe-64_description" = "USB mouse driver, 64bit";
+"VBoxExt2-32_description" = "driver untuk ext2/3 dari virtualbox, 32bit";
+"VBoxExt2-64_description" = "driver untuk ext2/3 dari virtualbox, 64bit";
+"VBoxExt4-32_description" = "driver untuk ext4 dari virtualbox, 32bit";
+"VBoxExt4-64_description" = "driver untuk ext4 dari virtualbox, 64bit";
+"XhciDxe-32_description" = "driver USB 3.0, 32bit";
+"XhciDxe-64_description" = "driver USB 3.0, 64bit";
+"CsmVideoDxe-64_description" = "video driver 64bit untuk Clover GUI yang mendukung banyak resolusi.
+Bergantung pada CSM pada UEFI BIOS dan CSM harus dalam keadaan enabled.
+Dapat menghalangi Clover bekerja dan mungkin akan ada masalah dengan wake.
+Gunakan dengan hati-hati.";
+"DataHubDxe-64_description" = "Protokol DataHub merupakan support yang diperlukan oleh MacOSX.
+Biasanya sudah tersedia tapi kadang-kadang terlewat. Kalau terlewat akan terlihat peringatan di layar.";
+"EmuVariableUefi-64_description" = "Driver 64bit untuk dukungan variabel NVRAM yang dibutuhkan oleh MacOSX.
+Biasanya UEFI boot memakai hardware NVRAM tapi kadang-kadang driver ini masih dibutuhkan.
+Gunakan HANYA kalau ada masalah";
+"OsxAptioFixDrv-64_description" = "Driver 64bit yang membenahi masalah Memori pada UEFI seperti pada AMI Aptio";
+"OsxLowMemFixDrv-64_description" = "Varian sederhana OsxAptioFixDrv, 64bit (Jangan pakai bersamaan)";
+"PartitionDxe-64_description" = "Driver 64bit yang mendukung partisi yang tidak umum seperti: hybrid GPT/MBR atau Apple Partition Map.";
+"SMCHelper-64_description" = "Restore SMC keys left in nvram by FakeSMC";
+"AppleEvent-64_description" = "Create AppleEvent protocol for FileVault2";
+"AppleKeyAggregator-64_description" = "Support for boot UI dialog for FileVault2";
+"FirmwareVolume-64_description" = "Create FirmwareVolume with cursor images";
+"AppleImageCodec-64_description" = "For decode PNG and BMP images in boot UI";
+"AppleUITheme-64_description" = "Create boot UI Themes support";
+"HashServiceFix-64_description" = "Fix Hash support if absent in native UEFI BIOS";
+"UsbKbDxe-64_description" = "Keyboard driver for boot UI support";
+"AppleGraphicsConfig-64_description" = "Create optional AppleGraphicsConfig protocol";
+"OSInfo-64_description" = "Inform user about version of macOS (optional)";
+       
+
+// ============================================================================
+// Themes
+// ----------------------------------------------------------------------------
+
+"Themes_title" = "Tematis";
+"Themes_description" = "Pilih tema yang mau dipakai.";
+
+"BGM_title" = "Black_Green_Moody";
+"BGM_description" = "Tema Black Green dan Moody kreasi Blackosx,
+Pasang ke /EFI/CLOVER/themes/BGM";
+
+"embedded_title" = "embedded";
+"embedded_description" = "Tema embedded kreasi Blackosx,
+Pasang ke /EFI/CLOVER/themes/embedded";
+
+"metal_title" = "metal";
+"metal_description" = "Tema original metal kreasi Slice,
+Pasang ke /EFI/CLOVER/themes/metal";
+
+"random_title" = "random";
+"random_description" = "Tema random kreasi Slice,
+Pasang ke /EFI/CLOVER/themes/random pilih tema lainnya";
+
+"steampunkblack_title" = "steampunkblack";
+"steampunkblack_description" = "Tema steampunkblack kreasi medik,
+Pasang ke /EFI/CLOVER/themes/steampunkblack";
+
+"CloverThemeManager_title" = "CloverThemeManager.app";
+"CloverThemeManager_description" = "CloverThemeManager.app by blackosx,
+keeps your Themes up to date, remove or install them by choosing from a wide selection.
+Install to /Applications";
+// ============================================================================
+// RC Scripts
+// ----------------------------------------------------------------------------
+"rc.scripts.on.target_title" = "Install RC skrip ke target volume";
+"rc.scripts.on.target_description" = "Install semua RC skrip ke target volume.
+Target harus merupakan OSX system volume yang bisa di boot.";
+"rc.scripts.on.all.volumes_title" = "Install semua RC skrip pada semua bootable OSX volume";
+"rc.scripts.on.all.volumes_description" = "Install semua RC skrip pada semua internal bootable OSX volume selain volume target.";
+"Optional RC Scripts" = "Opsional RC Skrip";
+"disable_sleep_proxy_client_description" = "Mendisable mDNSResponder sleep proxy client service. Supaya system tidak terbangun setiap jam apabila system dalam mode sleep";
+
+// ============================================================================
+// Clover Preference Pane
+// ----------------------------------------------------------------------------
+"CloverPrefpane_title" = "Install Clover Panel Preference";
+"CloverPrefpane_description" = "Install Clover Panel Preference ke target volume.
+dan CloverUpdater yang akan memberitahu anda tentang update Clover.";
+
+// ----------------------------------------------------------------------------

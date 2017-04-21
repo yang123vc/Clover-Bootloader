@@ -1,0 +1,165 @@
+// ============================================================================
+// Installation
+// ----------------------------------------------------------------------------
+"UEFI.only_title" = "Instaleaza doar pentru pornirea de tip UEFI";
+"UEFI.only_description" = "Instaleaza Clover pentru a fi folosit doar impreuna cu placile de baza compatibile UEFI";
+
+// ============================================================================
+// Target
+// ----------------------------------------------------------------------------
+"Target.ESP_title" = "Instaleaza Clover in ESP";
+"Target.ESP_description" = "Instaleaza Clover in ESP (EFI System Partition) pe partitia tinta 
+
+Intai trebuie formatata partitia ESP ca Fat32 pe Mac.
+
+Pentru Fat32, folositi comenzile:
+diskutil list
+newfs_msdos -v EFI -F 32 /dev/rdisk9s1";
+
+// ============================================================================
+// Bootloader
+// ----------------------------------------------------------------------------
+
+"Bootloader_title" = "Bootloader";
+"Bootloader_description" = "Clover EFI necesita trei fisiere esentiale (in termeni simpli):
+boot0 - in MBR (Master Boot Record) pentru incarcarea boot1.
+boot1 - in PBR (Partition Boot Record) pentru gasirea boot2.
+boot2 - in directorul principal al partitiei pentru incarcarea /EFI/CLOVER/CLOVERIA32.efi sau CLOVERX64.efi, si kernel etc.";
+
+"boot0af_title" = "Instaleaza boot0af in MBR";
+"boot0af_description" = "Folosit pentru initierea BIOS pe placile de baza cu BIOS.
+boot0af (boot0 Active First)  - bootloader-ul incearca sa porneasca partitia definita ca activa in MBR. Daca nu exista nicio partitie activa, va incerca sa initieze prima partitie EFI/FAT32/HFS (definita in  MBR si apoi in GPT) cu o semnatura PBR valida.
+Aceasta alegere va seta partitia HFS/FAT32 selectata ca activa.";
+
+"boot0ss_title" = "Instaleaza boot0ss in MBR";
+"boot0ss_description" = "Folosit pentru initierea BIOS pe placile de baza cu BIOS.
+boot0ss (boot0 Signature Scanning) -  bootloader-ul incearca sa porneasca prima partitie EFI/FAT32/HFS (definita in MBR si apoi in GPT) cu o semnatura PBR valida. Daca nu e gasita nicio partitie, va incerca sa initieze partitia activa definita in MBR.
+Acest bootloader reprezinta o solutie buna cand aveti Windows instalat pe acelasi drive (HDD/SSD), deoarece Windows necesita ca partitia sa fie activa.
+Aceasta alegere NU va seta partitia ca activa in MBR.";
+
+"bootNo_title" = "Nu actualiza sectoarele de MBR si PBR";
+"bootNo_description" = "Nu instala niciun bootloader (boot0X, boot1X).
+Folositor pentru placile de baza cu UEFI, care nu necesita fisiere pentru bootloader.
+Poate fi folosit de asemenea daca nu doriti sa actualizati sectoarele de MBR si PBR.";
+
+"AltBoot_title" = "Foloseste initiere PBR alternativa";
+"AltBoot_description" = "Instaleaza cod pentru boot1 in PBR, ceea ce ofera o pauza de 2 secunde la initierea sistemului, pentru a permite fisierului de boot pentru Stage 2 sa se incarce la o apasare de tasta.
+Fisier de boot = boot{apasa tasta}";
+
+
+"boot32_title" = "Instaleaza si porneste intai initierea 32-bit";
+"boot32_description" = "Instaleaza fisierele de initiere si seteaza pornirea 32-bit ca implicita.
+Pornire implicita = Clover EFI 32-bit. Puteti sa...
+Apasati tasta 1 pentru boot1 = Initiati Chameleon,
+Apasati tasta 3 pentru boot3 = Initiati EFI 32-bit,
+Apasati tasta 6 pentru boot6 = Initiati EFI 64-bit.";
+
+"boot64_title" = "Instaleaza si porneste intai initierea 64-bit";
+"boot64_description" = "Instaleaza fisierele de initiere si seteaza pornirea 64-bit ca implicita.
+Pornire implicita = Clover EFI 64-bit. Puteti sa...
+Apasati tasta 1 pentru boot1 = Initiati Chameleon,
+Apasati tasta 3 pentru boot3 = Initiati EFI 32-bit,
+Apasati tasta 6 pentru boot6 = Initiati EFI 64-bit.";
+
+// ============================================================================
+// CloverEFI
+// ----------------------------------------------------------------------------
+"CloverEFI_title" = "CloverEFI";
+"CloverEFI_description" = "Selectati versiunea de CLoverEFI pe care care doriti s-o instalati.";
+"cloverEFI.32_title" = "CloverEFI 32-bit";
+"cloverEFI.32_description" = "CloverEFI 32-bit";
+"cloverEFI.64.sata_title" = "CloverEFI 64-bit SATA";
+"cloverEFI.64.sata_description" = "CloverEFI 64-bit folosind SATA pentru accesarea HDD/SSD";
+"cloverEFI.64.blockio_title" = "CloverEFI 64-bit BiosBlockIO";
+"cloverEFI.64.blockio_description" = "CloverEFI 64-bit folosind Bios Block I/O pentru accesarea HDD/SSD";
+"cloverEFI.64.blockio2_title" = "CloverEFI 64-bits BiosBlockIO for NVIDIA NForce MCP79";
+"cloverEFI.64.blockio2_description" = "CloverEFI 64-bits using Bios Block I/O to access drives for chipset NVIDIA NForce MCP79";
+
+// ============================================================================
+// Drivers
+// ----------------------------------------------------------------------------
+"Ps2KeyboardDxe-32_description" = "Driver PS/2 pentru tastatura, 32-bit";
+"Ps2MouseAbsolutePointerDxe-32_description" = "Driver PS/2 pentru trackpad, 32-bit";
+"Ps2MouseDxe-32_description" = "Driver PS/2 pentru mouse, 32-bit";
+"Ps2MouseDxe-64_description" = "Driver PS/2 pentru mouse, 64-bit";
+"UsbMouseDxe-32_description" = "Driver USB pentru mouse, 32-bit";
+"UsbMouseDxe-64_description" = "Driver USB pentru mouse, 64-bit";
+"VBoxExt2-32_description" = "Driver ext2/3 de la VirtualBox, 32-bit";
+"VBoxExt2-64_description" = "Driver ext2/3 de la VirtualBox, 64-bit";
+"VBoxExt4-32_description" = "Driver ext4 de la VirtualBox, 32-bit";
+"VBoxExt4-64_description" = "Driver ext4 de la VirtualBox, 64-bit";
+"XhciDxe-32_description" = "Driver USB 3.0, 32-bit";
+"XhciDxe-64_description" = "Driver USB 3.0, 64-bit";
+"CsmVideoDxe-64_description" = "Driver video 64-bit pentru interfata Clover, permitand alegerea mai multor rezolutii. Este bazat pe modulul CSM din UEFI si necesita CSM activat.
+Nota: in anumite cazuri, acest lucru poate cauza probleme de pornire ale bootloader-ului. De asemenea, poate cauza 'kernel panic' la revenirea din modul Sleep.
+A se folosi cu precautie.";
+"DataHubDxe-64_description" = "Acesta este suportul pentru protocolul DataHub, obligatoriu pentru MacOSX.
+De obicei este deja prezent, dar uneori poate lipsi. In acest caz, veti vedea un mesaj de eroare pe ecran.";
+"EmuVariableUefi-64_description" = "Driver 64-bit pentru suportul variabilelor NVRAM necesare in MacOSX.
+De obicei, initierea UEFI foloseste NVRAM de tip hardware, dar in unele cazuri rare, acest driver e necesar.
+Folositi-l doar daca intampinati probleme fara el.";
+"OsxAptioFixDrv-64_description" = "Driver 64-bit pentru rezolvarea problemelor de memorie pe firmware UEFI cum ar fi AMI Aptio.";
+"OsxLowMemFixDrv-64_description" = "O varianta simplificata de OsxAptioFixDrv, 64-bit (a nu se folosi ambele simultan)";
+"PartitionDxe-64_description" = "Driver 64-bit pentru suportul tipurilor de partitii mai putin uzuale, cum ar fi: GPT/MBR hibrid, sau Apple Partition Map.";
+"SMCHelper-64_description" = "Restore SMC keys left in nvram by FakeSMC";
+"AppleEvent-64_description" = "Create AppleEvent protocol for FileVault2";
+"AppleKeyAggregator-64_description" = "Support for boot UI dialog for FileVault2";
+"FirmwareVolume-64_description" = "Create FirmwareVolume with cursor images";
+"AppleImageCodec-64_description" = "For decode PNG and BMP images in boot UI";
+"AppleUITheme-64_description" = "Create boot UI Themes support";
+"HashServiceFix-64_description" = "Fix Hash support if absent in native UEFI BIOS";
+"UsbKbDxe-64_description" = "Keyboard driver for boot UI support";
+"AppleGraphicsConfig-64_description" = "Create optional AppleGraphicsConfig protocol";
+"OSInfo-64_description" = "Inform user about version of macOS (optional)";
+       
+
+// ============================================================================
+// Themes
+// ----------------------------------------------------------------------------
+
+"Themes_title" = "Teme";
+"Themes_description" = "Selectati pentru a instala teme.";
+
+"BGM_title" = "BGM (Black Green Moody)";
+"BGM_description" = "Tema BGM (Black Green and Moody) de la Blackosx,
+Se instaleaza in /EFI/CLOVER/themes/BGM";
+
+"embedded_title" = "embedded";
+"embedded_description" = "embedded theme from Blackosx,
+Install to /EFI/CLOVER/themes/embedded";
+
+"metal_title" = "Metal";
+"metal_description" = "Tema originala Metal de la Slice,
+Se instaleaza in /EFI/CLOVER/themes/metal";
+
+"random_title" = "random";
+"random_description" = "random theme from Slice,
+Install to /EFI/CLOVER/themes/random choose a theme from others";
+
+"steampunkblack_title" = "steampunkblack";
+"steampunkblack_description" = "steampunkblack theme from medik,
+Install to /EFI/CLOVER/themes/steampunkblack";
+
+"CloverThemeManager_title" = "CloverThemeManager.app";
+"CloverThemeManager_description" = "CloverThemeManager.app by blackosx,
+keeps your Themes up to date, remove or install them by choosing from a wide selection.
+Install to /Applications";
+// ============================================================================
+// RC Scripts
+// ----------------------------------------------------------------------------
+"rc.scripts.on.target_title" = "Instaleaza script-uri RC pe volumul tinta";
+"rc.scripts.on.target_description" = "Instaleaza toate script-urile RC pe volumul tinta.
+Volumul selectat trebuie sa fie unul sistem functional OSX.";
+"rc.scripts.on.all.volumes_title" = "Instaleaza toate script-urile RC pe toate volumele OSX.";
+"rc.scripts.on.all.volumes_description" = "Instaleaza toate script-urile RC pe toate partitiile OSX initiabile, altele decat partitia tinta.";
+"Optional RC Scripts" = "Script-uri RC optionale";
+"disable_sleep_proxy_client_description" = "Dezactiveaza serviciul proxy de Sleep mDNSResponder. Asta va preveni sistemul din a se 'trezi' automat in fiecare ora.";
+
+// ============================================================================
+// Clover Preference Pane
+// ----------------------------------------------------------------------------
+"CloverPrefpane_title" = "Instaleaza panoul de preferinte pentru Clover";
+"CloverPrefpane_description" = "Instaleaza panoul de preferinte pentru Clover pe volumul tinta.
+Include CloverUpdater care permite primirea de notificari referitoare la actualizarile Clover disponibile.";
+
+// ----------------------------------------------------------------------------

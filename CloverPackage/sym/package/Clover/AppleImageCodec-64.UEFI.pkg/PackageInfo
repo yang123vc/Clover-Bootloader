@@ -1,0 +1,4 @@
+<?xml version="1.0"?>
+<pkg-info format-version="2" identifier="org.clover.drivers64uefi.mandatory.appleimagecodec-64.uefi" version="v2.4k" install-location="/EFIROOTDIR/EFI/CLOVER/drivers64UEFI" auth="root">
+	<payload installKBytes="20" numberOfFiles="2"/>
+</pkg-info>

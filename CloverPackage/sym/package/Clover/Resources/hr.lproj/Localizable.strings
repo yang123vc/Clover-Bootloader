@@ -1,0 +1,165 @@
+// ============================================================================
+// Installation
+// ----------------------------------------------------------------------------
+"UEFI.only_title" = "Instalacija za UEFI pokretanje";
+"UEFI.only_description" = "Instalira Clover samo za UEFI matične.";
+
+// ============================================================================
+// Target
+// ----------------------------------------------------------------------------
+"Target.ESP_title" = "Instaliraj Clover na EFI SYSTEM PARTICIJU";
+"Target.ESP_description" = "Instalira Clover na EFI SYSTEM PARTICIJU za odabrani volume
+
+ESP mora biti FAT32 format.
+
+Za Fat32 koristiti komandu:
+diskutil list
+newfs_msdos -v EFI -F 32 /dev/rdisk9s1";
+
+// ============================================================================
+// Bootloader
+// ----------------------------------------------------------------------------
+
+"Bootloader_title" = "Pokretač sustava";
+"Bootloader_description" = "Clover EFI sadrži tri osnovne datoteke.
+boot0 (na glavnom boot zapisu diska) boot1.
+boot1 (na boot zapisu particije) te pokretanje boot2.
+boot2 (na korijenskom sustavu particije) za pokretanje /EFI/CLOVER/BOOT/CLOVERIA32.efi ili CLOVERX64.efi, te  kernel itd.";
+
+"boot0af_title" = "Instaliraj boot0af u MBR";
+"boot0af_description" = "Koristi se za BIOS pokretanje na BIOS matičnim pločama. 
+boot0af (boot0 Active First) pokretač pokušava pokrenuti prvu aktivnu particiju definiranu u  MBR. Ako aktivna particija ne postoji, tada pokušava pokrenuti EFI/FAT32/HFS particiju (određenu u MBR potom GPT) sa valjanim PBR potpisom.
+Ovaj odabir će postaviti HFS/Fat32 particiju kao aktivnu.";
+
+"boot0ss_title" = "Instalira boot0ss u MBR";
+"boot0ss_description" = "Koristi se za BIOS pokretanje na BIOS matičnim pločama. 
+boot0ss (boot0 Traženje potpisa) pokretač pokušava pokrenuti EFI/FAT32/HFS particiju a valjanim PBR potpisom. Ako potpis ne postoji tada će pokušati pokrenuti prvu aktivnu particiju definiranu na MBR. 
+Ova opcija je korisna ako na istoj particiji imate instaliran Windows iz razloga što Windows zahtjeva svoju particiju kao aktivnu. 
+Ovaj odabir neće postaviti niti jednu particiju kao aktivnu u MBR.";
+
+"bootNo_title" = "Zadrži postojeće MBR i PBR sektore";
+"bootNo_description" = "Ne instalira (boot0X, boot1X).
+Poželjno koristiti na UEFI pločama koje ne zahtijevaju nikakve boot datoteke.
+Može se također koristiti ako ne želite mijenjati MBR ili PBR sektore.";
+
+"AltBoot_title" = "Koristi alternativni način pokretanja sustava PBR";
+"AltBoot_description" = "Instalira alternativnu metodu PBR sa mogućnošću kasnijeg odabira pristikom gumba.
+File to boot = boot{keypressed}";
+
+
+"boot32_title" = "Instaliraj te pokreni 32 bitnu verziju prvu";
+"boot32_description" = "Instalira 32 bitni boot te ga postavlja kao primarni.
+Po defaultu  boota = Clover EFI 32bit. Možete također koistiti...
+Koristiti 1 za boot1 = Pokretanje Chameleona,
+Koristiti 3 to boot3 = Pokretanje Clover EFI 32bit ,
+Koristiti 6 to boot6 = pokretanje Clover EFI 64bit .";
+
+"boot64_title" = "Instaliraj te pokreni 64 bitnu verziju kao zadanu";
+"boot64_description" = "Instalira 64 bitni boot te ga postavlja kao zadani.
+Po defaultu  boota = Clover EFI 64bit. Možete također koristiti...
+Koristiti 1 za boot1 = Pokretanje Chameleona,
+Koristiti 3 to boot3 = Pokretanje Clover EFI 32bit ,
+Koristiti 6 to boot6 = pokretanje Clover EFI 64bit .";
+
+// ============================================================================
+// CloverEFI
+// ----------------------------------------------------------------------------
+"CloverEFI_title" = "CloverEFI";
+"CloverEFI_description" = "Odaberite željenu verziju.";
+"cloverEFI.32_title" = "CloverEFI 32 bitni";
+"cloverEFI.32_description" = "CloverEFI 32 bitni";
+"cloverEFI.64.sata_title" = "CloverEFI 64 bitni SATA";
+"cloverEFI.64.sata_description" = "CloverEFI 64 bitni sa SATA načinom pristupa diskovima";
+"cloverEFI.64.blockio_title" = "CloverEFI 64 bitni BiosBlockIO";
+"cloverEFI.64.blockio_description" = "CloverEFI 64 bitni sa Bios Block I/O načinom pristupa diskovima";
+"cloverEFI.64.blockio2_title" = "CloverEFI 64-bits BiosBlockIO for NVIDIA NForce MCP79";
+"cloverEFI.64.blockio2_description" = "CloverEFI 64-bits using Bios Block I/O to access drives for chipset NVIDIA NForce MCP79";
+
+// ============================================================================
+// Drivers
+// ----------------------------------------------------------------------------
+"Ps2KeyboardDxe-32_description" = "PS/2 upravljački program za tastature, 32 bitna verzija";
+"Ps2MouseAbsolutePointerDxe-32_description" = "PS/2 upravljački program za tastature, 32 bitna verzija";
+"Ps2MouseDxe-32_description" = "PS/2 upravljački program za miša, 32 bitna verzija";
+"Ps2MouseDxe-64_description" = "PS/2 upravljački program za miša, 64 bitna verzija";
+"UsbMouseDxe-32_description" = "USB upravljački program za miša, 32 bitna verzija";
+"UsbMouseDxe-64_description" = "USB upravljački program za miša, 64 bitna verzija";
+"VBoxExt2-32_description" = "ext2/3 filesystem upravljački program iz virtualbox-a , 32 bitna verzija";
+"VBoxExt2-64_description" = "ext2/3 filesystem upravljački program iz virtualbox-a , 64 bitna verzija";
+"VBoxExt4-32_description" = "ext4 filesystem upravljački program iz virtualbox-a , 32 bitna verzija";
+"VBoxExt4-64_description" = "ext4 filesystem upravljački program iz virtualbox-a , 64 bitna verzija";
+"XhciDxe-32_description" = "USB upravljački program za miša, 32 bitna verzija";
+"XhciDxe-64_description" = "USB upravljački program za miša, 64 bitna verzija";
+"CsmVideoDxe-64_description" = "64 bitni video upravljački program za Clover sučelje pruža odabir više mogućnosti pri odabitu rezolucije. 
+Baziran je na CSM modulu UEFI te zahtijeva da CSM bude uključen u biosu. 
+U nekim slučajevima može prouzročiti probleme kao ne pokretanje Clover-a te problema sa buđenjem računala iz sleep moda. 
+Koristiti sa oprezom.";
+"DataHubDxe-64_description" = "Podrška za DataHub protokol,obavezna za MacOSX. 
+Uglavnom bi trebala biti prisutna,u slučaju da je nema pojavit će se poruka upozorenja. ";
+"EmuVariableUefi-64_description" = "64 bitna verzija upravljačkog programa pruža podršku NVRAM varijabli za OSX. Uglavnom većina UEFI boot načina koristi hardver za NVRAM ali u nekim rijetkim slučajevima potrebam je i oavj upravljački program. 
+Koristiti samo ako imate problema bez njega.";
+"OsxAptioFixDrv-64_description" = "64 bitna verzija upravljačkog programa koji popravlja probleme alociranja mamorije na AMI Aptio pločama. ";
+"OsxLowMemFixDrv-64_description" = "Pojednostavljena verzija OsxAptioFixDrv,64 bitna. ( nemojte koristiti obe verzije u isto vrijeme)";
+"PartitionDxe-64_description" = "64 bitni upravljački program za podršku ne uobičajenih particija poput  hybrid GPT/MBR ili Apple Partition Map";
+"SMCHelper-64_description" = "Restore SMC keys left in nvram by FakeSMC";
+"AppleEvent-64_description" = "Create AppleEvent protocol for FileVault2";
+"AppleKeyAggregator-64_description" = "Support for boot UI dialog for FileVault2";
+"FirmwareVolume-64_description" = "Create FirmwareVolume with cursor images";
+"AppleImageCodec-64_description" = "For decode PNG and BMP images in boot UI";
+"AppleUITheme-64_description" = "Create boot UI Themes support";
+"HashServiceFix-64_description" = "Fix Hash support if absent in native UEFI BIOS";
+"UsbKbDxe-64_description" = "Keyboard driver for boot UI support";
+"AppleGraphicsConfig-64_description" = "Create optional AppleGraphicsConfig protocol";
+"OSInfo-64_description" = "Inform user about version of macOS (optional)";
+       
+
+// ============================================================================
+// Themes
+// ----------------------------------------------------------------------------
+
+"Themes_title" = "Teme";
+"Themes_description" = "Odaberi za instalaciju teme.";
+
+"BGM_title" = "Crno_Zelena_Čudna";
+"BGM_description" = "BGM (Black Green and Moody) tema od kreatora Blackosx,
+Instaliraj u /EFI/CLOVER/themes/BGM";
+
+"embedded_title" = "embedded";
+"embedded_description" = "embedded theme from Blackosx,
+Install to /EFI/CLOVER/themes/embedded";
+
+"metal_title" = "metal";
+"metal_description" = "Originalna početna tema od kreatora Slice,
+Instaliraj u  /EFI/CLOVER/themes/metal.";
+
+"random_title" = "random";
+"random_description" = "random theme from Slice,
+Install to /EFI/CLOVER/themes/random choose a theme from others";
+
+"steampunkblack_title" = "steampunkblack";
+"steampunkblack_description" = "steampunkblack theme from medik,
+Install to /EFI/CLOVER/themes/steampunkblack";
+
+"CloverThemeManager_title" = "CloverThemeManager.app";
+"CloverThemeManager_description" = "CloverThemeManager.app by blackosx,
+keeps your Themes up to date, remove or install them by choosing from a wide selection.
+Install to /Applications";
+// ============================================================================
+// RC Scripts
+// ----------------------------------------------------------------------------
+"rc.scripts.on.target_title" = "Instaliraj RC skripte na odabrani disk";
+"rc.scripts.on.target_description" = "Instalira sve RC skripte na odabrani disk.
+Mora biti odabran OSX bootabilni sistemski disk.";
+"rc.scripts.on.all.volumes_title" = "Instaliraj sve RC skripte na sve OSX bootabilne diskove";
+"rc.scripts.on.all.volumes_description" = "Instalira sve RC skripte na sve interne OSX bootabilne diskove.";
+"Optional RC Scripts" = "Opcionalne RC skripte";
+"disable_sleep_proxy_client_description" = "Isključuje mDNSResponder spavajuči proxy client service.Ovo sprečava da se sistem budi iz sleepa svakih nekoliko sati";
+
+// ============================================================================
+// Clover Preference Pane
+// ----------------------------------------------------------------------------
+"CloverPrefpane_title" = "Instaliraj Clover Preference Pane";
+"CloverPrefpane_description" = "Instaliraj Clover Preference Pane na odabrani disk.
+Sadrži CloverUpdater koji vas obavještava o novim verzijama.";
+
+// ----------------------------------------------------------------------------

@@ -1,0 +1,10 @@
+"Always" = "Uvijek";
+"Auto" = "Automatski";
+"Boot Volume" = "Pokretački disk";
+"ESP on [%@] %@" = "ESP na [%1$@] %2$@";
+"Never" = "Nikad";
+"No" = "Ne";
+"No description available" = "Opis nije dostupan";
+"Select the EFI directory" = "Odabir odredišnog EFI direktorija";
+"Set EFI directory" = "Odaberi EFI direktorij";
+"Unknown" = "Nepoznat";

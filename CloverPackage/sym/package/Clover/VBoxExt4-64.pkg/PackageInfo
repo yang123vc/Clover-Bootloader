@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+<pkg-info format-version="2" identifier="org.clover.drivers64.vboxext4-64" version="v2.4k" install-location="/EFIROOTDIR/EFI/CLOVER/drivers64" auth="root">
+	<payload installKBytes="20" numberOfFiles="2"/>
+	<scripts>
+		<preinstall file="./preinstall"/>
+	</scripts>
+</pkg-info>

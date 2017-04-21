@@ -1,0 +1,10 @@
+"Always" = "Всегда";
+"Auto" = "Автоматически";
+"Boot Volume" = "Стартовый том";
+"ESP on [%@] %@" = "ESP на [%1$@] %2$@";
+"Never" = "Никогда!";
+"No" = "Нет";
+"No description available" = "Нет описания";
+"Select the EFI directory" = "Выбрать папку EFI";
+"Set EFI directory" = "Установить папку EFI";
+"Unknown" = "Неизвестно";

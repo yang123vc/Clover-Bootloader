@@ -1,0 +1,166 @@
+// ============================================================================
+// Installation
+// ----------------------------------------------------------------------------
+"UEFI.only_title" = "Installatie voor UEFI moederborden";
+"UEFI.only_description" = "Installeer Clover voor alleen gebruik met UEFI moederborden.";
+
+// ============================================================================
+// Target
+// ----------------------------------------------------------------------------
+"Target.ESP_title" = "Installeer Clover in de ESP";
+"Target.ESP_description" = "Installeer Clover in de ESP (EFI Systeem Partitie) van de doelvolume
+
+De ESP dient als eerst te worden geformatteerd in FAT32 op een Mac.
+
+Voor FAT32 kun je de volgende commando's gebruiken:
+diskutil list
+newfs_msdos -v EFI -F 32 /dev/rdisk9s1";
+
+// ============================================================================
+// Bootloader
+// ----------------------------------------------------------------------------
+
+"Bootloader_title" = "Opstartlader";
+"Bootloader_description" = "Clover EFI vereist drie essentiële bestanden. (in eenvoudige termen)
+boot0 (Op de MBR van de schijf) verantwoordelijk voor het laden van boot1.
+boot1 (Op de boot-sector van de partitie) voor het vinden van boot2.
+boot2 (Op de partitie hoofdmap) voor het laden van /EFI/BOOT/CLOVERIA32.efi of CLOVERX64.efi, de kernel etc.";
+
+"boot0af_title" = "Installeer boot0af in MBR";
+"boot0af_description" = "Gebruikt voor BIOS opstarten op BIOS moederborden.
+boot0af (boot0 Active First) opstartlader proberen om de gedefinieerd actieve partitie in MBR op te starten. Bij geen actieve partitie, zal het proberen om de eerste EFI/FAT32/HFS partitie op te starten (gedefinieerd in de MBR en daarna vervolgens in GPT) met een geldige PBR handtekening.
+Bij deze keuze zal de geselecteerde HFS/Fat32 partitie omgezet worden naar actief.";
+
+"boot0ss_title" = "Installeer boot0ss in MBR";
+"boot0ss_description" = "Gebruikt voor BIOS opstarten op BIOS moederborden.
+boot0ss (boot0 Signature Scanning) opstartlader zal proberen de eerst EFI/FAT32/HFS partitie op te starten (gedefinieerd in de MBR en daarna de GPT) met een geldige PBR handtekening. Als er geen partitie is gevonden zal het proberen de eerst actieve partitie gedefinieerd in MBR op te starten.
+Deze opstartlader is een goede keuze als je Windows hebt geïnstalleerd op dezelfde hardeschijf, omdat Windows de partitie als partitie actief wilt hebben.
+Deze keuze zal geen enkele partitie activeren in MBR.";
+
+"bootNo_title" = "MBR en PBR sectoren niet updaten";
+"bootNo_description" = "Installeer geen enkele opstartlader (boot0X, boot1X).
+Nuttig bij UEFI moederborden die geen opstartbestanden nodig hebben.
+Kan ook gebruikt worden als je niet MBR of PBR sectoren wilt upgraden.";
+
+"AltBoot_title" = "Gebruik alternatieve opstarten PBR";
+"AltBoot_description" = "Installeer alternatief PBR opstarten met de keuze opstarten bij een toetsslag.
+Bestand voor opstarten = boot{toetsslag}";
+
+
+"boot32_title" = "Installeer & Start 32bit opstarten eerst";
+"boot32_description" = "Installeer opstart bestanden en zet 32bit opstarten eerst.
+Standaard opstart na opstarten = Clover EFI 32bit. Je kan..
+Drukken op toets 1 voor boot1 = Chameleon opstarten,
+Drukken op toets 3 voor boot3 = Clover EFI 32bit opstarten,
+Drukken op toets 6 voor boot6 = Clover EFI 64bit opstarten.";
+
+"boot64_title" = "Installeer & Start 64bit opstarten eerst";
+"boot64_description" = "Installeer opstart bestanden en zet 64bit opstarten eerst.
+Standaard opstart na opstarten = Clover EFI 64bit. Je kan..
+Drukken op toets 1 voor boot1 = Chameleon opstarten,
+Drukken op toets 3 voor boot3 = Clover EFI 32bit opstarten,
+Drukken op toets 6 voor boot6 = Clover EFI 64bit opstarten.";
+
+// ============================================================================
+// CloverEFI
+// ----------------------------------------------------------------------------
+"CloverEFI_title" = "CloverEFI";
+"CloverEFI_description" = "Selecteer de versie van CloverEFI voor installatie.";
+"cloverEFI.32_title" = "CloverEFI 32-bits";
+"cloverEFI.32_description" = "CloverEFI 32-bits";
+"cloverEFI.64.sata_title" = "CloverEFI 64-bits SATA";
+"cloverEFI.64.sata_description" = "CloverEFI 64-bits in gebruik met SATA naar toegangsschijven";
+"cloverEFI.64.blockio_title" = "CloverEFI 64-bits BiosBlockIO";
+"cloverEFI.64.blockio_description" = "CloverEFI 64-bits gebruik met Bios Block I/O naar toegangsschijven";
+"cloverEFI.64.blockio2_title" = "CloverEFI 64-bits BiosBlockIO for NVIDIA NForce MCP79";
+"cloverEFI.64.blockio2_description" = "CloverEFI 64-bits using Bios Block I/O to access drives for chipset NVIDIA NForce MCP79";
+
+// ============================================================================
+// Drivers
+// ----------------------------------------------------------------------------
+"Ps2KeyboardDxe-32_description" = "PS/2 toetsenbord stuurprogramma, 32bit";
+"Ps2MouseAbsolutePointerDxe-32_description" = "PS/2 trackpad stuurprogramma, 32bit";
+"Ps2MouseDxe-32_description" = "PS/2 muis stuurprogramma, 32bit";
+"Ps2MouseDxe-64_description" = "PS/2 muis stuurprogramma, 64bit";
+"UsbMouseDxe-32_description" = "USB muis stuurprogramma, 32bit";
+"UsbMouseDxe-64_description" = "USB muis stuurprogramma, 64bit";
+"VBoxExt2-32_description" = "ext2/3 bestandssysteem stuurprogramma van virtualbox, 32bit";
+"VBoxExt2-64_description" = "ext2/3 bestandssysteem stuurprogramma van virtualbox, 64bit";
+"VBoxExt4-32_description" = "ext4 bestandssysteem stuurprogramma van virtualbox, 32bit";
+"VBoxExt4-64_description" = "ext4 bestandssysteem stuurprogramma van virtualbox, 64bit";
+"XhciDxe-32_description" = "USB 3.0 stuurprogramma, 32bit";
+"XhciDxe-64_description" = "USB 3.0 stuurprogramma, 64bit";
+"CsmVideoDxe-64_description" = "64bit video stuurprogramma voor de Clover GUI, voor ondersteuning van meer resoluties.
+Het is gebaseerd op de CSM module in UEFI BIOS en het vereist dat CSM wordt ingeschakeld.
+Clover kan mogelijk niet worden gestart en er kunnen problemen ontstaan bij het ontwaken van het systeem.
+Voorzichtigheid geboden.";
+"DataHubDxe-64_description" = "Dit is DataHub protocol ondersteuning verplicht voor MacOSX.
+Meestal is dit al aanwezig maar soms kan het ook missen. In dat geval zal je een waarschuwing zien op het scherm.";
+"EmuVariableUefi-64_description" = "64bit stuurprogramma voor ondersteuning van NVRAM variabelen die nodig zijn voor MacOSX.
+Meestal gebruikt UEFI hardware NVRAM maar in sommige zeldzame gevallen is dit stuurprogramma nodig.
+Gebruik dit alleen als je problemen hebt zonder het";
+"OsxAptioFixDrv-64_description" = "64bit stuurprogramma voor het corrigeren van Geheugen problemen op UEFI firmware zoals een AMI Aptio";
+"OsxLowMemFixDrv-64_description" = "Vereenvoudigde variant van OsxAptioFixDrv, 64bit (gebruik ze niet naast elkaar)";
+"PartitionDxe-64_description" = "64bit stuurprogramma ter ondersteuning niet-gebruikelijke partition maps zoals: hybride GPT/MBR of Apple Partition Map.";
+"SMCHelper-64_description" = "Restore SMC keys left in nvram by FakeSMC";
+"AppleEvent-64_description" = "Create AppleEvent protocol for FileVault2";
+"AppleKeyAggregator-64_description" = "Support for boot UI dialog for FileVault2";
+"FirmwareVolume-64_description" = "Create FirmwareVolume with cursor images";
+"AppleImageCodec-64_description" = "For decode PNG and BMP images in boot UI";
+"AppleUITheme-64_description" = "Create boot UI Themes support";
+"HashServiceFix-64_description" = "Fix Hash support if absent in native UEFI BIOS";
+"UsbKbDxe-64_description" = "Keyboard driver for boot UI support";
+"AppleGraphicsConfig-64_description" = "Create optional AppleGraphicsConfig protocol";
+"OSInfo-64_description" = "Inform user about version of macOS (optional)";
+       
+
+// ============================================================================
+// Themes
+// ----------------------------------------------------------------------------
+
+"Themes_title" = "Thema's";
+"Themes_description" = "Selecteer thema's om te installeren.";
+
+"BGM_title" = "Black_Green_Moody";
+"BGM_description" = "BGM thema door Blackosx
+Installeert in /EFI/CLOVER/themes/BGM";
+
+"embedded_title" = "embedded";
+"embedded_description" = "embedded thema door Blackosx,
+Installeert in /EFI/CLOVER/themes/embedded";
+
+"metal_title" = "metaal";
+"metal_description" = "Originele metaal thema van Slice,
+Installeert in /EFI/CLOVER/themes/metal";
+
+"random_title" = "random";
+"random_description" = "random thema van Slice,
+Installeert in /EFI/CLOVER/themes/random";
+
+"steampunkblack_title" = "steampunkblack";
+"steampunkblack_description" = "steampunkblack thema van medik,
+Installeert in /EFI/CLOVER/themes/steampunkblack.";
+
+"CloverThemeManager_title" = "CloverThemeManager.app";
+"CloverThemeManager_description" = "CloverThemeManager.app by blackosx,
+keeps your Themes up to date, remove or install them by choosing from a wide selection.
+Install to /Applications";
+// ============================================================================
+// RC Scripts
+// ----------------------------------------------------------------------------
+"rc.scripts.on.target_title" = "Installert RC scripts op het doel volume";
+"rc.scripts.on.target_description" = "Installeer alle RC scripts op de doelvolume.
+De doelvolume moet een opstart mogelijk OSX systeem volume zijn.";
+"rc.scripts.on.all.volumes_title" = "Installeer alle RC scripts op alle andere opstart mogelijke OSX volumes";
+"rc.scripts.on.all.volumes_description" = "Installeer alle RC scripts op alle interne opstart mogelijke OSX volumes dan de doelvolume.";
+"Optional RC Scripts" = "Optionele RC Scripts";
+"disable_sleep_proxy_client_description" = "Schakel de mDNSResponder sleep proxy client service uit. Dit voorkomt dat het systeem ontwaakt uit slaap elk uur";
+
+// ============================================================================
+// Clover Preference Pane
+// ----------------------------------------------------------------------------
+"CloverPrefpane_title" = "Installeer Clover Voorkeur Paneel";
+"CloverPrefpane_description" = "Installeer Clover Voorkeur Paneel op de doelvolume.
+Inclusief CloverUpdater die je melding geeft over Clover updates.";
+
+// ----------------------------------------------------------------------------

@@ -1,0 +1,168 @@
+// ============================================================================
+// Installation
+// ----------------------------------------------------------------------------
+"UEFI.only_title" = "Встановити Кловер тільки для UEFI завантаження.";
+"UEFI.only_description" = "Встановити Clover тільки для UEFI материнських плат.";
+
+// ============================================================================
+// Target
+// ----------------------------------------------------------------------------
+"Target.ESP_title" = "Встановити Clover на EFI розділ (ESP)";
+"Target.ESP_description" = "Встановити Кловер на ESP (EFI System Partition) вказаного тому
+
+Розділ ESP повинен бути відформатований в FAT32 (так воно і є спочатку)
+
+Якщо ні, тоді з Терміналу зробити наступні накази:
+diskutil list
+newfs_msdos -v EFI -F 32 /dev/rdisk9s1";
+
+// ============================================================================
+// Bootloader
+// ----------------------------------------------------------------------------
+
+"Bootloader_title" = "Завантажувач";
+"Bootloader_description" = "Clover EFI вимагає наявності трьох головних файлів. (спрощено)
+boot0 (головний завантажувальний запис) відповідає за завантаження boot1.
+boot1 (завантажувальний запис розділу) для завантаження boot2.
+boot2 (в корені обраного розділу) для пошуку /EFI/CLOVER/CLOVERIA32.efi або CLOVERX64.efi";
+
+"boot0af_title" = "Встановити boot0af на MBR";
+"boot0af_description" = "Використовується для БІОС завантаження.
+boot0af (boot0af - Активується Першим) шукає активний розділ в MBR. Якщо його не знайдено, тоді завантажується перший розділ EFI/FAT32/HFS (спочатку в MBR, потім в GPT) з дійсною PBR сигнатурою.
+З цим варіантом інсталяції обраний розділ HFS/Fat32 буде активним.";
+
+"boot0ss_title" = "Встановити boot0ss на MBR";
+"boot0ss_description" = "Використовується для БІОС завантаження.
+boot0ss (boot0ss - Сканує Сигнатуру) шукає перший розділ EFI/FAT32/HFS (спочатку в MBR, потім в GPT) з дійсною PBR сигнатурою. Якщо розділ не знайдено, буде завантажено активний розділ з MBR.
+Цей варіант є добрим вибором, якщо Windows встановленно на тому ж диску, тому що Windows вимагає активний розділ.
+З цим варіантом інсталяції жоден розділ не активується в MBR.  ";
+
+"bootNo_title" = "Не оновлювати MBR та PBR сектори";
+"bootNo_description" = "Не встановлювати будь які завантажувальні BIOS сектори (boot0X, boot1X)!
+Використовувати тільки для завантаження UEFI материнських плат,
+а також, якщо ви не маєте потреби змінювати існуючі MBR або PBR сектори.";
+
+"AltBoot_title" = "Використовувати PBR з обраним завантаженням";
+"AltBoot_description" = "Встановити альтернативний PBR завантажувальний сектор, який дає змогу
+вибрати різні завантажувачі (boot1, boot3, boot7) натисканням клавіші в затримці 2 секунд.
+Завантажити файл boot{цифра}";
+
+
+"boot32_title" = "Встановити 32 бітний завантажувач першим";
+"boot32_description" = "Встановити файли та призначити 32 біт за замовчуванням.
+За замовчуванням завантажується boot = Clover 32 після 2 секунд очікування на клавіатурі: 
+Клавіша 1 для boot1 = Chameleon boot,
+Клавіша 3 для boot3 = Clover EFI 32bit boot,
+Клавіша 6 для boot6 = Clover EFI 64bit boot.";
+
+"boot64_title" = "Встановити 64 бітний завантажувач першим";
+"boot64_description" = "Встановити файли та призначити 64 біт за замовчуванням.
+За замовчуванням завантажується boot = Clover 64 після 2 секунд очікування на клавіатурі: 
+Клавіша 1 для boot1 = Chameleon boot,
+Клавіша 3 для boot3 = Clover EFI 32bit boot,
+Клавіша 6 для boot6 = Clover EFI 64bit boot.";
+
+// ============================================================================
+// CloverEFI
+// ----------------------------------------------------------------------------
+"CloverEFI_title" = "Кловер EFI";
+"CloverEFI_description" = "Вибрати варіант встановлення CloverEFI.";
+"cloverEFI.32_title" = "Кловер EFI 32-біту";
+"cloverEFI.32_description" = "Кловер EFI 32-біту";
+"cloverEFI.64.sata_title" = "Кловер EFI 64-біту SATA";
+"cloverEFI.64.sata_description" = "Кловер EFI 64-біт із використанням SATA драйверу";
+"cloverEFI.64.blockio_title" = "Кловер EFI 64-біту BiosBlockIO";
+"cloverEFI.64.blockio_description" = "Кловер EFI 64-біту із використанням BiosBlockI/O драйверу для доступу до дисків.
+Використовувати якщо маєте чипсет NVIDIA NForce. ";
+"cloverEFI.64.blockio2_title" = "CloverEFI 64-bits BiosBlockIO for NVIDIA NForce MCP79";
+"cloverEFI.64.blockio2_description" = "CloverEFI 64-bits using Bios Block I/O to access drives for chipset NVIDIA NForce MCP79";
+
+// ============================================================================
+// Drivers
+// ----------------------------------------------------------------------------
+"Ps2KeyboardDxe-32_description" = "32-бітний драйвер для PS/2 клавіатури (тiльки для Кловера, не для ОС!)";
+"Ps2MouseAbsolutePointerDxe-32_description" = "32-бітний драйвер для PS2 тачпаду";
+"Ps2MouseDxe-32_description" = "32-бітний драйвер для PS/2 миші";
+"Ps2MouseDxe-64_description" = "64-бітний драйвер для PS/2 миші";
+"UsbMouseDxe-32_description" = "32-бітний драйвер для USB миші";
+"UsbMouseDxe-64_description" = "64-бітний драйвер для USB миші";
+"VBoxExt2-32_description" = "32-бітний драйвер для Linux EXT2/3 - файлової системи";
+"VBoxExt2-64_description" = "64-бітний драйвер для Linux EXT2/3 - файлової системи";
+"VBoxExt4-32_description" = "32-бітний драйвер для Linux EXT4 - файлової системи";
+"VBoxExt4-64_description" = "64-бітний драйвер для Linux EXT4 - файлової системи";
+"XhciDxe-32_description" = "32-бітний драйвер для USB v3.0";
+"XhciDxe-64_description" = "64-бітний драйвер для USB v3.0";
+"CsmVideoDxe-64_description" = "64-бітний відеодрайвер для Clover GUI дозволяє використовувати велику роздільну здатність экрану.
+Він грунтується на CSM модулі у BIOS та вимагає, щоб CSM був ввімкнений
+Проте, Clover може і не завантажитись з цим драйвером, або ж система не буде пробуджуватись після сну,
+тому, використовуйте з обережністю.";
+"DataHubDxe-64_description" = "Підтримка DataHub протоколу, який суворо необхідний для запуску MacOSX.
+Зазвичай він і так присутній, проте може і не бути, в цьому випадку ви побачите попередження на екрані.";
+"EmuVariableUefi-64_description" = "64-бітний драйвер для підтрімки NVRAM змінних, необхідних для MacOSX.
+Найчастіше UEFI використовує вбудований NVRAM, але іноді ні
+Використовуйте драйвер тільки якщо ви достеменно знаєте, що він потрібен.";
+"OsxAptioFixDrv-64_description" = "64-бітний драйвер виправляє помилки пам'яті, які створює AMI Aptio UEFI";
+"OsxLowMemFixDrv-64_description" = "Спрощений варіант 64-бітного драйверу. Увага! Не використовувати спільно з OsxAptioFixDrv!";
+"PartitionDxe-64_description" = "64-бітний драйвер для підтримки незвичайних схем розділів як гібрид GPT/MBR або Apple Partition Map.";
+"SMCHelper-64_description" = "Restore SMC keys left in nvram by FakeSMC";
+"AppleEvent-64_description" = "Create AppleEvent protocol for FileVault2";
+"AppleKeyAggregator-64_description" = "Support for boot UI dialog for FileVault2";
+"FirmwareVolume-64_description" = "Create FirmwareVolume with cursor images";
+"AppleImageCodec-64_description" = "For decode PNG and BMP images in boot UI";
+"AppleUITheme-64_description" = "Create boot UI Themes support";
+"HashServiceFix-64_description" = "Fix Hash support if absent in native UEFI BIOS";
+"UsbKbDxe-64_description" = "Keyboard driver for boot UI support";
+"AppleGraphicsConfig-64_description" = "Create optional AppleGraphicsConfig protocol";
+"OSInfo-64_description" = "Inform user about version of macOS (optional)";
+       
+
+// ============================================================================
+// Themes
+// ----------------------------------------------------------------------------
+
+"Themes_title" = "Теми";
+"Themes_description" = "Виберіть для встановлення теми.";
+
+"BGM_title" = "Чорна та Зелена Похмура";
+"BGM_description" = "BGM (Чорна Зелена та Похмура) тема від Blackosx,
+Встановити в /EFI/CLOVER/themes/BGM.";
+
+"embedded_title" = "embedded";
+"embedded_description" = "embedded theme from Blackosx,
+Install to /EFI/CLOVER/themes/embedded";
+
+"metal_title" = "Метал";
+"metal_description" = "Тема Нержавійка від Slice,
+Встановити в /EFI/CLOVER/themes/metal.";
+
+"random_title" = "random";
+"random_description" = "random theme from Slice,
+Install to /EFI/CLOVER/themes/random choose a theme from others";
+
+"steampunkblack_title" = "steampunkblack";
+"steampunkblack_description" = "steampunkblack theme from medik,
+Install to /EFI/CLOVER/themes/steampunkblack";
+
+"CloverThemeManager_title" = "CloverThemeManager.app";
+"CloverThemeManager_description" = "CloverThemeManager.app by blackosx,
+keeps your Themes up to date, remove or install them by choosing from a wide selection.
+Install to /Applications";
+// ============================================================================
+// RC Scripts
+// ----------------------------------------------------------------------------
+"rc.scripts.on.target_title" = "Встановити системні RC скріпти на цільовий розділ";
+"rc.scripts.on.target_description" = "Встановити всі RC скрипти на цільовий розділ.
+Розділ повинен бути завантажувальний в OSX.";
+"rc.scripts.on.all.volumes_title" = "Встановити скрипти RC на всі інші завантажувальні розділи OSX";
+"rc.scripts.on.all.volumes_description" = "Встановити скрипти RC на всі внутрішні завантажувальні розділи OSX, окрім цільового розділу";
+"Optional RC Scripts" = "Додаткові RC скрипти";
+"disable_sleep_proxy_client_description" = "Заборонити mDNSResponder sleep proxy client service. Це запобігає пробудження системи кожної години";
+
+// ============================================================================
+// Clover Preference Pane
+// ----------------------------------------------------------------------------
+"CloverPrefpane_title" = "Встановити Контрольну Панель Clover ";
+"CloverPrefpane_description" = "Встановити контрольну панель на цільовий розділ.
+Встановити також CloverUpdater, він повідомляє про оновлення.";
+
+// ----------------------------------------------------------------------------
