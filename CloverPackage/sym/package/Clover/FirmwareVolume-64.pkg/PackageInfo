@@ -1,4 +1,0 @@
-<?xml version="1.0"?>
-<pkg-info format-version="2" identifier="org.clover.drivers64.mandatory.firmwarevolume-64" version="v2.4k" install-location="/EFIROOTDIR/EFI/CLOVER/drivers64" auth="root">
-	<payload installKBytes="8" numberOfFiles="2"/>
-</pkg-info>

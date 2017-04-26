@@ -1,7 +1,0 @@
-<?xml version="1.0"?>
-<pkg-info format-version="2" identifier="org.clover.bootloader.boot0ss" version="v2.4k" install-location="/EFIROOTDIR" auth="root">
-	<payload installKBytes="0" numberOfFiles="1"/>
-	<scripts>
-		<postinstall file="./postinstall"/>
-	</scripts>
-</pkg-info>

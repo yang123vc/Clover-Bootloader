@@ -1,7 +1,0 @@
-<?xml version="1.0"?>
-<pkg-info format-version="2" identifier="org.clover.themes.metal" version="v2.4k" install-location="/EFIROOTDIR/EFI/CLOVER/themes" auth="root">
-	<payload installKBytes="3144" numberOfFiles="95"/>
-	<scripts>
-		<preinstall file="./preinstall"/>
-	</scripts>
-</pkg-info>
