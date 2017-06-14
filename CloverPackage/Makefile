@@ -10,6 +10,15 @@ image iso: utils
 pkg installer:
 	@${SRCROOT}/makepkg
 
+slimpkg1:
+	@${SRCROOT}/makepkg --nothemes
+
+slimpkg2:
+	@${SRCROOT}/makepkg --nothemes --noprefpane
+
+slimpkg3:
+	@${SRCROOT}/makepkg --nothemes --noprefpane --norc --nolegacy
+
 updatepo:
 	@${SRCROOT}/package/translate.sh --update-po
 

@@ -447,6 +447,18 @@ VOID FillInputs(BOOLEAN New)
   InputItems[InputItemsCount++].BValue = gSettings.KernelAndKextPatches.KPDELLSMBIOS;
     // end of change
 
+  InputItems[InputItemsCount].ItemType = Hex;  //62
+  if (New) {
+    InputItems[InputItemsCount].SValue = AllocateZeroPool(24);
+  }
+  UnicodeSPrint(InputItems[InputItemsCount++].SValue, 24, L"0x%08x", gFwFeatures);
+
+  InputItems[InputItemsCount].ItemType = Hex;  //63
+  if (New) {
+    InputItems[InputItemsCount].SValue = AllocateZeroPool(24);
+  }
+  UnicodeSPrint(InputItems[InputItemsCount++].SValue, 24, L"0x%08x", gFwFeaturesMask);
+
 
   // CSR - aka System Integrity Protection configuration
   InputItemsCount = 65;
@@ -919,7 +931,17 @@ VOID ApplyInputs(VOID)
     gRemapSmBiosIsRequire = InputItems[i].BValue;
     gBootChanged = TRUE;
   }
-  
+
+  i++; //62
+  if (InputItems[i].Valid) {
+    gFwFeatures = (UINT32)StrHexToUint64(InputItems[i].SValue);
+  }
+
+  i++; //63
+  if (InputItems[i].Valid) {
+    gFwFeaturesMask = (UINT32)StrHexToUint64(InputItems[i].SValue);
+  }
+
   // CSR
   i = 65; 
   if (InputItems[i].Valid) {
@@ -2637,9 +2659,9 @@ static VOID TextMenuStyle(IN REFIT_MENU_SCREEN *Screen, IN SCROLL_STATE *State, 
   }
 }
 
-//
-// graphical generic style
-//
+/**
+ * graphical generic style
+ */
 
 INTN DrawTextXY(IN CHAR16 *Text, IN INTN XPos, IN INTN YPos, IN UINT8 XAlign)
 {
@@ -2652,42 +2674,48 @@ INTN DrawTextXY(IN CHAR16 *Text, IN INTN XPos, IN INTN YPos, IN UINT8 XAlign)
   }
     
   egMeasureText(Text, &TextWidth, NULL);
+  
   if (XAlign == X_IS_LEFT) {
     TextWidth = UGAWidth - XPos - 1;
     XText = XPos;
   }
-//  TextBufferXY = egCreateImage(TextWidth, TextHeight, TRUE);
-//  egFillImage(TextBufferXY, &MenuBackgroundPixel);
+  
+  //TextBufferXY = egCreateImage(TextWidth, TextHeight, TRUE);
+  //egFillImage(TextBufferXY, &MenuBackgroundPixel);
+  
   TextBufferXY = egCreateFilledImage(TextWidth, TextHeight, TRUE, &MenuBackgroundPixel);
+  
   // render the text
   TextWidth = egRenderText(Text, TextBufferXY, 0, 0, 0xFFFF);
-  if (XAlign != X_IS_LEFT) { // shift 64 is prohibited
+  
+  if (XAlign != X_IS_LEFT) {
+    // shift 64 is prohibited
     XText = XPos - (TextWidth >> XAlign);
   }
+  
   BltImageAlpha(TextBufferXY, XText, YPos,  &MenuBackgroundPixel, 16);
   egFreeImage(TextBufferXY);
+  
   return TextWidth;
 }
 
-/*
- * Adapted DrawTextXY function to draw the text for the Boot Camp Style.
- * Author: Needy.
+/**
+ * Draw Boot Camp Style text.
+ * author: Needy
  */
 VOID DrawBCSText(IN CHAR16 *Text, IN INTN XPos, IN INTN YPos, IN UINT8 XAlign)
 {
-  // init
-  UINTN     ChrsNum = 12;
-  UINTN     Ellipsis = 3;
-  INTN      TextWidth = 0;
-  INTN      XText = 0;
-  UINTN     i = 0;
-  EG_IMAGE  *TextBufferXY = NULL;
-  CHAR16    *BCSText = NULL;
-  
   // check if text was provided
   if (!Text) {
     return;
   }
+  
+  // init
+  UINTN  ChrsNum = 12;
+  UINTN  EllipsisLen = 3;
+  UINTN  TextLen = StrLen(Text);
+  CHAR16 *BCSText = NULL;
+  CHAR16 *EllipsisText = L"...";
   
   // more space, more characters
   if (GlobalConfig.TileXSpace >= 25 && GlobalConfig.TileXSpace < 30) {
@@ -2704,31 +2732,21 @@ VOID DrawBCSText(IN CHAR16 *Text, IN INTN XPos, IN INTN YPos, IN UINT8 XAlign)
     ChrsNum = 18;
   }
   
-  // calculate text's width
-  TextWidth = ((StrLen(Text) <= (ChrsNum - Ellipsis)) ? StrLen(Text) : ChrsNum) * ((FontWidth > GlobalConfig.CharWidth) ?
-               FontWidth : GlobalConfig.CharWidth);
+  // if the text exceeds the given limit
+  if (TextLen > ChrsNum) {
+    // allocate memory
+    BCSText = AllocatePool((sizeof(CHAR16) * ChrsNum) + 1);
   
-  // render the text
-  TextBufferXY = egCreateFilledImage(TextWidth, FontHeight, TRUE, &MenuBackgroundPixel);
+    // copy the permited amound of chars minus the ellipsis
+    StrnCpy(BCSText, Text, ChrsNum - EllipsisLen);
 
-  if (XAlign == X_IS_LEFT) {
-    TextWidth = UGAWidth - XPos - 1;
-    XText = XPos;
-  }
+    // end of string before ellipsis
+    BCSText[ChrsNum - EllipsisLen] = '\0';
 
-  // if the text exceeds the given limit,
-  // copy the permited amound of chars and add ellipsis
-  if (StrLen(Text) > (ChrsNum - Ellipsis)) {
-    BCSText = AllocatePool(sizeof(CHAR16) * ChrsNum);
-
-    for (i = 0; i < ChrsNum; i++) {
-      if (i < ChrsNum - Ellipsis) {
-        BCSText[i] = Text[i];
-      } else {
-        BCSText[i] = L'.';
-      }
-    }
+    // add ellipsis at the end
+    StrCat(BCSText, EllipsisText);
     
+    // end of string
     BCSText[ChrsNum] = '\0';
     
     // error check
@@ -2736,20 +2754,15 @@ VOID DrawBCSText(IN CHAR16 *Text, IN INTN XPos, IN INTN YPos, IN UINT8 XAlign)
       return;
     }
     
-    TextWidth = egRenderText(BCSText, TextBufferXY, 0, 0, 0xFFFF);
+    // draw text
+    DrawTextXY(BCSText, XPos, YPos, XAlign);
     
     // free the allocated memory
     FreePool(BCSText);
   } else {
-    TextWidth = egRenderText(Text, TextBufferXY, 0, 0, 0xFFFF);
+    // draw text
+    DrawTextXY(Text, XPos, YPos, XAlign);
   }
-  
-  if (XAlign != X_IS_LEFT) { // shift 64 is prohibited
-    XText = XPos - (TextWidth >> XAlign);
-  }
-    
-  BltImageAlpha(TextBufferXY, XText, YPos,  &MenuBackgroundPixel, 16);
-  egFreeImage(TextBufferXY);
 }
 
 VOID DrawMenuText(IN CHAR16 *Text, IN INTN SelectedWidth, IN INTN XPos, IN INTN YPos, IN INTN Cursor)
@@ -3641,7 +3654,7 @@ VOID MainMenuStyle(IN REFIT_MENU_SCREEN *Screen, IN SCROLL_STATE *State, IN UINT
           if ((i >= State->FirstVisible) && (i <= State->LastVisible)) {
             DrawMainMenuEntry(Screen->Entries[i], (i == State->CurrentSelection)?1:0,
                               itemPosX[i - State->FirstVisible], row0PosY);
-          // create static text for the boot options if the BootCampStyle is used
+            // draw static text for the boot options, BootCampStyle
             if (GlobalConfig.BootCampStyle && !(GlobalConfig.HideUIFlags & HIDEUI_FLAG_LABEL)) {
               // clear the screen
               FillRectAreaOfScreen(itemPosX[i - State->FirstVisible] + (row0TileSize / 2), textPosY,
@@ -4167,6 +4180,8 @@ REFIT_MENU_ENTRY  *SubMenuSmbios()
   AddMenuItem(SubScreen, 85, "Chassis Type:", TAG_INPUT, TRUE);
   AddMenuItem(SubScreen, 86, "ROM Version:", TAG_INPUT, TRUE);
   AddMenuItem(SubScreen, 87, "ROM Release Date:", TAG_INPUT, TRUE);
+  AddMenuItem(SubScreen, 62, "FirmwareFeature:", TAG_INPUT, TRUE);
+  AddMenuItem(SubScreen, 63, "FirmwareFeaturesMask:", TAG_INPUT, TRUE);
   AddMenuItem(SubScreen, 17, "PlatformFeature:", TAG_INPUT, TRUE);
 
   AddMenuEntry(SubScreen, &MenuEntryReturn);

@@ -3993,8 +3993,16 @@ ParseSMBIOSSettings(
   }
   //gFwFeatures = 0xC0001403 - by default
   Prop = GetProperty (DictPointer, "FirmwareFeatures");
-  gFwFeatures       = (UINT32)GetPropertyInteger (Prop, gFwFeatures);
+  if (Prop != NULL) {
+    gFwFeatures       = (UINT32)GetPropertyInteger (Prop, gFwFeatures);
+    DBG ("FirmwareFeatures: 0x%08x\n", gFwFeatures);
+  }
 
+  Prop = GetProperty (DictPointer, "FirmwareFeaturesMask");
+  if (Prop != NULL) {
+    gFwFeaturesMask = (UINT32)GetPropertyInteger (Prop, gFwFeaturesMask);
+    DBG ("FirmwareFeaturesMask: 0x%08x\n", gFwFeaturesMask);
+  }
 }
 
 EFI_STATUS
@@ -5293,7 +5301,7 @@ GetUserSettings(
       }
 
       Prop = GetProperty (DictPointer, "PlatformFeature");
-      gSettings.PlatformFeature = (UINT64)GetPropertyInteger(Prop, 0xFFFF);
+      gSettings.PlatformFeature = (UINT64)GetPropertyInteger(Prop, gPlatformFeature);
     }
 
     //CPU
@@ -5625,6 +5633,8 @@ CHAR8 *GetOSVersion(IN LOADER_ENTRY *Entry)
           if (Prop != NULL && Prop->string != NULL && Prop->string[0] != '\0') {
             if (AsciiStrStr (Prop->string, "Install%20OS%20X%20Mavericks.app")) {
               OSVersion = AllocateCopyPool (5, "10.9");
+            } else if (AsciiStrStr (Prop->string, "Install%20macOS%20High%20Sierra") || AsciiStrStr (Prop->string, "Install%20macOS%2010.13")) {
+              OSVersion = AllocateCopyPool (6, "10.13");
             } else if (AsciiStrStr (Prop->string, "Install%20macOS%20Sierra") || AsciiStrStr (Prop->string, "Install%20OS%20X%2010.12")) {
               OSVersion = AllocateCopyPool (6, "10.12");
             } else if (AsciiStrStr (Prop->string, "Install%20OS%20X%20El%20Capitan") || AsciiStrStr (Prop->string, "Install%20OS%20X%2010.11")) {
@@ -5678,6 +5688,9 @@ CHAR16
   CHAR16 *OSIconName;
   if (OSVersion == NULL) {
     OSIconName = L"mac";
+  } else if (AsciiStrStr (OSVersion, "10.13") != 0) {
+      // High Sierra
+    OSIconName = L"hsierra,mac";
   } else if (AsciiStrStr (OSVersion, "10.12") != 0) {
     // Sierra
     OSIconName = L"sierra,mac";

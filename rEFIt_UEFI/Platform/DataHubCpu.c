@@ -142,7 +142,7 @@ SetVariablesForOSX(LOADER_ENTRY *Entry)
   // The variable names used should be made global constants to prevent them being allocated multiple times
 
   UINT32  Attributes;
-  UINT32  FwFeaturesMask;
+//  UINT32  gFwFeaturesMask;
   UINT32  Color;
   CHAR8   *None;
   CHAR8   *NvidiaWebValue;
@@ -192,14 +192,13 @@ SetVariablesForOSX(LOADER_ENTRY *Entry)
                    &gFwFeatures);
 
   // Download-Fritz: Should be added to SMBIOS or at least to some other config section
-  FwFeaturesMask = 0xC003ffff;
+//  FwFeaturesMask = 0xFFFFFFFF;
   AddNvramVariable(L"FirmwareFeaturesMask",
                    &gEfiAppleNvramGuid,
                    Attributes,
-                   sizeof(FwFeaturesMask),
-                   &FwFeaturesMask);
+                   sizeof(gFwFeaturesMask),
+                   &gFwFeaturesMask);
 
-  // reserved for a future. Should be tested on Yosemite
   // HW_MLB and HW_ROM are also around on some Macs with the same values as MLB and ROM
 
   AddNvramVariable(L"HW_BID", &gEfiAppleNvramGuid, Attributes, AsciiStrLen(gSettings.BoardNumber), gSettings.BoardNumber);
